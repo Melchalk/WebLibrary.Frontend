@@ -3,7 +3,7 @@ import { useAppDispatch } from "../redux/hooks";
 import { addAuthToken, addRefreshToken, login } from "../redux/authSlice";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { RegisterRequest, loginUser, registerUser } from "./authService";
+import { RegisterRequest, loginUser, registerUser } from "./AuthService";
 
 export function LogoutPage() {
   const dispatch = useAppDispatch();
