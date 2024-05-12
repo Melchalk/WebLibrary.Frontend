@@ -4,6 +4,7 @@ import { addAuthToken, addRefreshToken, login } from "../redux/authSlice";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { RegisterRequest, loginUser, registerUser } from "./AuthService";
+import ErrorToast from "../components/ErrorToast";
 
 export function LogoutPage() {
   const dispatch = useAppDispatch();
@@ -24,20 +25,18 @@ export function LoginPage() {
     const [statePassword, setStatePassword] = useState<string>("");   
     const navigate = useNavigate()
     const dispatch = useAppDispatch();
-    
-    let status: number;
+
+    const [show, setShow] = useState(false);
 
     const onLoginUser = () => {
       loginUser(statePhone, statePassword)
         .then((res) =>{
-            console.log('sdf')
             dispatch(addAuthToken(res.data?.accessToken));
             dispatch(addRefreshToken(res.data?.refreshToken));
             dispatch(login(true));
             navigate('/home');
-            status = res.status;
         })
-        .catch(() => navigate('/error/' + status))
+        .catch(() => setShow(true))
     };
 
     return (
@@ -50,60 +49,53 @@ export function LoginPage() {
         </FloatingLabel>
         <br />
         <Button variant="warning" onClick={() => onLoginUser()}>Ok</Button>
+        <br />
+        {ErrorToast(show, setShow)}
       </>
     );
 }
 
 export function RegisterPage() {
   const [stateRequest, setStateRequest] = useState<RegisterRequest>({
-    userName: '',
-    userPosition: 0,
-    faculty: null,
-    userPhone: '',
-    userPassword:''
+    libraryId: null,
+    fullName: '',
+    phone: '',
+    password: ''
   });
 
   const navigate = useNavigate()
   const dispatch = useAppDispatch();
   
-  let status: number;
+  const [show, setShow] = useState(false);
 
   const onRegisterUser = () => {
     registerUser(stateRequest)
       .then((res) =>{
-          console.log('sdf')
           dispatch(addAuthToken(res.data?.accessToken));
           dispatch(addRefreshToken(res.data?.refreshToken));
           navigate('/home');
-          status = res.status;
       })
-      .catch(() => navigate('/error/' + status))
+      .catch(() => setShow(true))
   };
 
   return (
     <>
-      <FloatingLabel label="Name" className="mb-3">
-        <Form.Control placeholder="Name" onChange={(t) => 
-          setStateRequest({...stateRequest, userName: t.target.value})}/>
-      </FloatingLabel>
-      <FloatingLabel label="Position" className="mb-3">
-        <Form.Control placeholder="Position" onChange={(t) => 
-          setStateRequest({...stateRequest, userPosition: Number(t.target.value)})}/>
+      <FloatingLabel label="FullName" className="mb-3">
+        <Form.Control placeholder="FullName" onChange={(t) => 
+          setStateRequest({...stateRequest, fullName: t.target.value})}/>
       </FloatingLabel>
       <FloatingLabel label="Phone" className="mb-3">
-        <Form.Control placeholder="name@example.com" onChange={(t) => 
-          setStateRequest({...stateRequest, userPhone: t.target.value})}/>
-      </FloatingLabel>
-      <FloatingLabel label="FacultyNumber" className="mb-3">
-        <Form.Control placeholder="FacultyNumber" onChange={(t) => 
-          setStateRequest({...stateRequest, faculty: Number(t.target.value)})}/>
+        <Form.Control placeholder="Number" onChange={(t) => 
+          setStateRequest({...stateRequest, phone: t.target.value})}/>
       </FloatingLabel>
       <FloatingLabel label="Password">
         <Form.Control type="password" placeholder="Password" onChange={(t) => 
-          setStateRequest({...stateRequest, userPhone: t.target.value})}/>
+          setStateRequest({...stateRequest, password: t.target.value})}/>
       </FloatingLabel>
       <br />
       <Button variant="warning" onClick={() => onRegisterUser()}>Ok</Button>
+      <br />
+      {ErrorToast(show, setShow)}
     </>
   );
 }

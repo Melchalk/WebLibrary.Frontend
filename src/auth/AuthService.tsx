@@ -6,18 +6,10 @@ export interface LoginResult{
 }
 
 export interface RegisterRequest{
-    userName:string,
-    userPosition:TeachingPositions | number,
-    faculty:number | null,
-    userPhone:string,
-    userPassword:string
-}
-
-export enum TeachingPositions
-{
-    Assistant,
-    Teacher,
-    SeniorLecturer
+    libraryId: string | null,
+    fullName: string,
+    phone: string,
+    password: string
 }
 
 export function loginUser(userPhone:string, userPassword:string){
@@ -29,10 +21,9 @@ export function loginUser(userPhone:string, userPassword:string){
 
 export function registerUser(request:RegisterRequest){
     return appApiIns.post('auth/register',{
-        name: request.userName,
-        position: request.userPosition,
-        phone: request.userPhone,
-        facultyNumber: request.faculty,
-        password: request.userPassword
+        libraryId: request.libraryId,
+        fullName: request.fullName,
+        phone: request.phone,
+        password: request.password
     });
 }
