@@ -4,12 +4,14 @@ interface AuthState {
     isLogin: boolean
     accessToken: string | null
     refreshToken: string | null
+    id: string
 }
 
 const initialState: AuthState = {
     isLogin: false,
     accessToken: null,
-    refreshToken: null
+    refreshToken: null,
+    id: ''
 }
 
 export const authSlice = createSlice({
@@ -25,8 +27,11 @@ export const authSlice = createSlice({
         },
         addRefreshToken: (state, action) => {
             state.refreshToken = action.payload
+        },
+        addId: (state, action) => {
+            state.id = action.payload
         }
     },
 })
 
-export const { login, addAuthToken, addRefreshToken} = authSlice.actions
+export const { login, addAuthToken, addRefreshToken, addId} = authSlice.actions

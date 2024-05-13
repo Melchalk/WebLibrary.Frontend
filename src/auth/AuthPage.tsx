@@ -1,4 +1,4 @@
-import { Button, FloatingLabel, Form } from "react-bootstrap";
+import { Button, FloatingLabel, Form, Stack } from "react-bootstrap";
 import { useAppDispatch } from "../redux/hooks";
 import { addAuthToken, addRefreshToken, login } from "../redux/authSlice";
 import { useEffect, useState } from "react";
@@ -41,15 +41,16 @@ export function LoginPage() {
 
     return (
       <>
-        <FloatingLabel controlId="floatingInput" label="Phone" className="mb-3">
+      <Stack gap={3} className="col-md-2 mx-auto mb-3">
+        <FloatingLabel controlId="floatingInput" label="Phone" >
           <Form.Control type="phone" placeholder="name@example.com" onChange={(t) => setStatePhone(t.target.value)}/>
         </FloatingLabel>
         <FloatingLabel controlId="floatingPassword" label="Password">
           <Form.Control type="password" placeholder="Password" onChange={(t) => setStatePassword(t.target.value)}/>
         </FloatingLabel>
-        <br />
-        <Button variant="warning" onClick={() => onLoginUser()}>Ok</Button>
-        <br />
+        <Button variant="warning" className="mx-auto" onClick={() => onLoginUser()}>Ok</Button>
+      </Stack>
+      <br />
         {ErrorToast(show, setShow)}
       </>
     );
@@ -80,20 +81,21 @@ export function RegisterPage() {
 
   return (
     <>
-      <FloatingLabel label="FullName" className="mb-3">
-        <Form.Control placeholder="FullName" onChange={(t) => 
-          setStateRequest({...stateRequest, fullName: t.target.value})}/>
-      </FloatingLabel>
-      <FloatingLabel label="Phone" className="mb-3">
-        <Form.Control placeholder="Number" onChange={(t) => 
-          setStateRequest({...stateRequest, phone: t.target.value})}/>
-      </FloatingLabel>
-      <FloatingLabel label="Password">
-        <Form.Control type="password" placeholder="Password" onChange={(t) => 
-          setStateRequest({...stateRequest, password: t.target.value})}/>
-      </FloatingLabel>
-      <br />
-      <Button variant="warning" onClick={() => onRegisterUser()}>Ok</Button>
+      <Stack gap={3} className="col-md-2 mx-auto mb-3">
+        <FloatingLabel label="FullName">
+          <Form.Control placeholder="FullName" onChange={(t) => 
+            setStateRequest({...stateRequest, fullName: t.target.value})}/>
+        </FloatingLabel>
+        <FloatingLabel label="Phone">
+          <Form.Control placeholder="Number" onChange={(t) => 
+            setStateRequest({...stateRequest, phone: t.target.value})}/>
+        </FloatingLabel>
+        <FloatingLabel label="Password">
+          <Form.Control type="password" placeholder="Password" onChange={(t) => 
+            setStateRequest({...stateRequest, password: t.target.value})}/>
+        </FloatingLabel>
+        <Button variant="warning" className="mx-auto"  onClick={() => onRegisterUser()}>Ok</Button>
+      </Stack>
       <br />
       {ErrorToast(show, setShow)}
     </>
