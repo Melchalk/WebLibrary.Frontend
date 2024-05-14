@@ -27,3 +27,11 @@ export function registerUser(request:RegisterRequest){
         password: request.password
     });
 }
+
+export function getCurrentUser(){
+    return appApiIns.get('auth/get/current');
+}
+
+export function deleteCurrentUser(){
+    return appApiIns.delete('auth/delete/current');
+}

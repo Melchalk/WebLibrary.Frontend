@@ -30,8 +30,14 @@ export const authSlice = createSlice({
         },
         addId: (state, action) => {
             state.id = action.payload
+        },
+        logout: (state) => {
+            state.isLogin = false;
+            state.accessToken = null;
+            state.refreshToken = null;
+            state.id = '';
         }
     },
 })
 
-export const { login, addAuthToken, addRefreshToken, addId} = authSlice.actions
+export const { login, addAuthToken, addRefreshToken, addId, logout} = authSlice.actions

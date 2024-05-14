@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import { GetLibrarianResponse, getLibrarian } from "../api/LibrarianApi";
-import { useAppSelector } from "../redux/hooks";
-import { Stack } from "react-bootstrap";
+import { useAppDispatch } from "../redux/hooks";
+import { Button, Stack } from "react-bootstrap";
+import { getCurrentUser, deleteCurrentUser } from "../auth/AuthService";
+import { addId, logout } from "../redux/authSlice";
+import { useNavigate } from "react-router-dom";
 
 export default function PersonalPage(){
     const [stateResponse, setStateResponse] = useState<GetLibrarianResponse>({
@@ -11,26 +14,42 @@ export default function PersonalPage(){
         id: ''
       });
     
-    const id = useAppSelector((state) => state.auth.id)
+    const dispatch = useAppDispatch();
+    const navigate = useNavigate();
 
     useEffect(() => {
-        getLibrarian(id)
+        getCurrentUser()
             .then((res) =>{
-                setStateResponse({...stateResponse, libraryId: res.data?.libraryId});
-                setStateResponse({...stateResponse, fullName: res.data?.fullName});
-                setStateResponse({...stateResponse, phone: res.data?.phone});
-                setStateResponse({...stateResponse, id: res.data?.id});               
+                setStateResponse(res.data);
+                
+                if (stateResponse.libraryId == null){
+                    setStateResponse(stateResponse => ({...stateResponse, libraryId: 'Не задан'}));
+                }
+
+                dispatch(addId(res.data?.id))
             })
-    });  
+            .catch(() => console.log('hss'))
+    }, []);  
+
+    const onDelete = () => {
+        deleteCurrentUser()
+            .then(() => {
+                dispatch(logout());
+                navigate('/home');
+            })
+    };
 
     return(
         <>
-        <Stack gap={3} className="col-md-1 mx-auto mb-3">
+        <Stack gap={3} className="mx-auto">
             <h1> Информация о пользователе</h1>
-            <h3> ФИО: {stateResponse.fullName}</h3>
-            <h3> Номер телефона: {stateResponse.phone}</h3>
-            <h3> Id библиотеки: {stateResponse.libraryId}</h3>
+            <h4> ФИО: {stateResponse.fullName}</h4>
+            <h4> Номер телефона: {stateResponse.phone}</h4>
+            <h4> Id библиотеки: {stateResponse.libraryId}</h4>
+        <Button variant="danger" className="mx-auto" onClick={() => onDelete()}>Удалить аккаунт</Button>
+
         </Stack>
+        <br />
         </>
     );
 }
