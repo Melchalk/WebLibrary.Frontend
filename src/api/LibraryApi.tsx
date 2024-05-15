@@ -7,7 +7,7 @@ export interface CreateLibraryRequest{
 }
 
 export interface GetLibraryResponse{
-    id: string,
+    number: number,
     title: string,
     address: string,
     phone: string
@@ -21,10 +21,10 @@ export function createReader(request:CreateLibraryRequest){
     });
 }
 
-export function getLibrary(id:string){
+export function getLibrary(number:number){
     return appApiIns.get('library/get',{
         params: {
-            id: id
+            number: number
         }
     });
 }
@@ -33,10 +33,10 @@ export function getLibraries(){
     return appApiIns.get('library/get/all');
 }
 
-export function deleteLibrary(id:string){
+export function deleteLibrary(number:number){
     return appApiIns.delete('library/delete', {
         params: {
-            id: id
+            number: number
         }
     });
 }

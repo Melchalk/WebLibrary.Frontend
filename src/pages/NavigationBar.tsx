@@ -7,14 +7,12 @@ export function NavigationBar(){
     return(
         <Navbar bg="light" data-bs-theme="light">
             <Container>
-                <Navbar.Brand href="/home">Library</Navbar.Brand>
+                <Navbar.Brand href="/libraries">Библиотеки</Navbar.Brand>
                 <Nav className="me-auto">
-                    <Nav.Link href="/home">Home</Nav.Link>
-                    <Nav.Link href="/books">Books</Nav.Link>
-                    <Nav.Link href="/readers">Readers</Nav.Link>
-                    <Nav.Link href="/issues">Issues</Nav.Link>
-                    <Nav.Link href="/libraries">Libraries</Nav.Link>
-                    <Nav.Link href="/librarians">Librarians</Nav.Link>
+                    <Nav.Link href="/books">Книги</Nav.Link>
+                    <Nav.Link href="/readers">Читатели</Nav.Link>
+                    <Nav.Link href="/issues">Выдачи</Nav.Link>
+                    <Nav.Link href="/librarians">Работники</Nav.Link>
                 </Nav>
                 {isLogin ?
                     <DropdownButton id="dropdown-profile-button" title="Profile">
@@ -24,9 +22,7 @@ export function NavigationBar(){
                     <DropdownButton id="dropdown-auth-button" title="Auth">
                         <Dropdown.Item href="/register">Register</Dropdown.Item>
                         <Dropdown.Item href="/auth">Log in</Dropdown.Item>
-                    </DropdownButton> 
-
-                }
+                    </DropdownButton> }
             </Container>
         </Navbar>
     );

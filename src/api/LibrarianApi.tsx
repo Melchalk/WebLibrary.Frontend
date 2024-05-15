@@ -2,15 +2,15 @@ import { appApiIns } from "./AppApi";
 
 export interface GetLibrarianResponse{
     id: string
-    libraryId: string | null,
+    libraryNumber: number | null | string,
     fullName: string,
     phone: string
 }
 
-export function getLibrarian(id:string){
+export function getLibrarian(number:number){
     return appApiIns.get('librarian/get',{
         params: {
-            id: id
+            number: number
         }
     });
 }

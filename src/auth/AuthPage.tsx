@@ -1,6 +1,6 @@
 import { Button, FloatingLabel, Form, Stack } from "react-bootstrap";
 import { useAppDispatch } from "../redux/hooks";
-import { addAuthToken, addRefreshToken, login, logout } from "../redux/authSlice";
+import { addAuthToken, addRefreshToken, logout } from "../redux/authSlice";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { RegisterRequest, loginUser, registerUser } from "./AuthService";
@@ -32,7 +32,7 @@ export function LoginPage() {
         .then((res) =>{
             dispatch(addAuthToken(res.data?.accessToken));
             dispatch(addRefreshToken(res.data?.refreshToken));
-            dispatch(login(true));
+
             navigate('/account');
         })
         .catch((error) => {
@@ -83,7 +83,7 @@ export function RegisterPage() {
       .then((res) =>{
           dispatch(addAuthToken(res.data?.accessToken));
           dispatch(addRefreshToken(res.data?.refreshToken));
-          dispatch(login(true));
+
           navigate('/account');
       })
       .catch((error) => {

@@ -1,14 +1,14 @@
 import { appApiIns } from "./AppApi";
 
 export interface CreateHallRequest{
-    libraryId: string,
+    libraryNumber: number,
     number: number,
     title: string | null,
     thematic: string
 }
 
 export interface GetHallResponse{
-    libraryId: string,
+    libraryNumber: number,
     number: number,
     title: string | null,
     thematic: string
@@ -16,17 +16,17 @@ export interface GetHallResponse{
 
 export function createReader(request:CreateHallRequest){
     return appApiIns.post('hall/create',{
-        libraryId: request.libraryId,
+        libraryNumber: request.libraryNumber,
         number: request.number,
         title: request.title,
         thematic: request.thematic
     });
 }
 
-export function getHall(libraryId:string, number:number){
+export function getHall(libraryNumber:number, number:number){
     return appApiIns.get('hall/get',{
         params: {
-            libraryId: libraryId,
+            libraryNumber: libraryNumber,
             number: number
         }
     });
@@ -36,10 +36,10 @@ export function getHalls(){
     return appApiIns.get('hall/get/all');
 }
 
-export function deleteHall(libraryId:string, number:number){
+export function deleteHall(libraryNumber:number, number:number){
     return appApiIns.delete('hall/delete', {
         params: {
-            libraryId: libraryId,
+            libraryNumber: libraryNumber,
             number: number
         }
     });
