@@ -1,6 +1,9 @@
 import { Container, Dropdown, DropdownButton, Nav, Navbar } from 'react-bootstrap';
+import { useAppSelector } from '../redux/hooks';
 
 export function NavigationBar(){
+    const isLogin = useAppSelector((state) => state.auth.isLogin)
+
     return(
         <Navbar bg="light" data-bs-theme="light">
             <Container>
@@ -13,11 +16,17 @@ export function NavigationBar(){
                     <Nav.Link href="/libraries">Libraries</Nav.Link>
                     <Nav.Link href="/librarians">Librarians</Nav.Link>
                 </Nav>
-                <DropdownButton id="dropdown-basic-button" title="Auth">
-                    <Dropdown.Item href="/register">Register</Dropdown.Item>
-                    <Dropdown.Item href="/auth">Log in</Dropdown.Item>
-                    <Dropdown.Item href="/logout">Log out</Dropdown.Item>
-                </DropdownButton>
+                {isLogin ?
+                    <DropdownButton id="dropdown-profile-button" title="Profile">
+                        <Dropdown.Item href="/account">Your profile</Dropdown.Item>
+                        <Dropdown.Item href="/logout">Log out</Dropdown.Item>
+                    </DropdownButton> :
+                    <DropdownButton id="dropdown-auth-button" title="Auth">
+                        <Dropdown.Item href="/register">Register</Dropdown.Item>
+                        <Dropdown.Item href="/auth">Log in</Dropdown.Item>
+                    </DropdownButton> 
+
+                }
             </Container>
         </Navbar>
     );

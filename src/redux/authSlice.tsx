@@ -36,6 +36,7 @@ export const authSlice = createSlice({
             state.accessToken = null;
             state.refreshToken = null;
             state.id = '';
+            localStorage.removeItem('accessToken')
         }
     },
 })

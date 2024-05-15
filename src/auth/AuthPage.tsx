@@ -25,6 +25,7 @@ export function LoginPage() {
     const dispatch = useAppDispatch();
 
     const [show, setShow] = useState(false);
+    const [errorMessage, setError] = useState<any>();
 
     const onLoginUser = () => {
       loginUser(statePhone, statePassword)
@@ -34,7 +35,16 @@ export function LoginPage() {
             dispatch(login(true));
             navigate('/account');
         })
-        .catch(() => setShow(true))
+        .catch((error) => {
+          setShow(true);
+          if (error.response) {
+            setError(error.response.data);
+          } else if (error.request) {
+            setError(error.request);
+          } else {
+            setError(error.message);
+          }
+        })
     };
 
     return (
@@ -49,7 +59,7 @@ export function LoginPage() {
         <Button variant="warning" className="mx-auto" onClick={() => onLoginUser()}>Ok</Button>
       </Stack>
       <br />
-        {ErrorToast(show, setShow)}
+        {ErrorToast(show, setShow, errorMessage)}
       </>
     );
 }
@@ -66,15 +76,26 @@ export function RegisterPage() {
   const dispatch = useAppDispatch();
   
   const [show, setShow] = useState(false);
+  const [errorMessage, setError] = useState<any>();
 
   const onRegisterUser = () => {
     registerUser(stateRequest)
       .then((res) =>{
           dispatch(addAuthToken(res.data?.accessToken));
           dispatch(addRefreshToken(res.data?.refreshToken));
+          dispatch(login(true));
           navigate('/account');
       })
-      .catch(() => setShow(true))
+      .catch((error) => {
+        setShow(true);
+        if (error.response) {
+          setError(error.response.data);
+        } else if (error.request) {
+          setError(error.request);
+        } else {
+          setError(error.message);
+        }
+      })
   };
 
   return (
@@ -95,7 +116,7 @@ export function RegisterPage() {
         <Button variant="warning" className="mx-auto"  onClick={() => onRegisterUser()}>Ok</Button>
       </Stack>
       <br />
-      {ErrorToast(show, setShow)}
+      {ErrorToast(show, setShow, errorMessage)}
     </>
   );
 }

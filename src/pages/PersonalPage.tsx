@@ -45,9 +45,8 @@ export default function PersonalPage(){
             <h1> Информация о пользователе</h1>
             <h4> ФИО: {stateResponse.fullName}</h4>
             <h4> Номер телефона: {stateResponse.phone}</h4>
-            <h4> Id библиотеки: {stateResponse.libraryId}</h4>
-        <Button variant="danger" className="mx-auto" onClick={() => onDelete()}>Удалить аккаунт</Button>
-
+            <h4 className="mb-5"> Id библиотеки: {stateResponse.libraryId}</h4>
+        <Button variant="danger" className="col-md-2" onClick={() => onDelete()}>Удалить аккаунт</Button>
         </Stack>
         <br />
         </>
