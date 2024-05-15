@@ -6,7 +6,7 @@ export interface LoginResult{
 }
 
 export interface RegisterRequest{
-    libraryId: string | null,
+    libraryNumber: number | null,
     fullName: string,
     phone: string,
     password: string
@@ -21,7 +21,7 @@ export function loginUser(userPhone:string, userPassword:string){
 
 export function registerUser(request:RegisterRequest){
     return appApiIns.post('auth/register',{
-        libraryId: request.libraryId,
+        libraryNumber: request.libraryNumber,
         fullName: request.fullName,
         phone: request.phone,
         password: request.password

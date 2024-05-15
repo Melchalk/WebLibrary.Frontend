@@ -2,6 +2,8 @@ import { ToastContainer } from 'react-bootstrap';
 import Toast from 'react-bootstrap/Toast';
 
 export default function ErrorToast(show: boolean, setShow: React.Dispatch<React.SetStateAction<boolean>>, errorMessage:any) {
+  setShow(true);
+
   return (
     <ToastContainer className = "p-3" position='top-end'>
         <Toast show={show} onClose={() => setShow(false)}>

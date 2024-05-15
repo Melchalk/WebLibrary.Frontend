@@ -66,7 +66,7 @@ export function LoginPage() {
 
 export function RegisterPage() {
   const [stateRequest, setStateRequest] = useState<RegisterRequest>({
-    libraryId: null,
+    libraryNumber: null,
     fullName: '',
     phone: '',
     password: ''
