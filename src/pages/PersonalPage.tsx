@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { GetLibrarianResponse } from "../api/LibrarianApi";
-import { useAppDispatch } from "../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { Button, Stack } from "react-bootstrap";
 import { getCurrentUser, deleteCurrentUser } from "../auth/AuthService";
 import { addId, logout } from "../redux/authSlice";
@@ -14,9 +14,9 @@ export default function PersonalPage(){
         id: ''
       });
     
-    const dispatch = useAppDispatch();
     const navigate = useNavigate();
-
+    const dispatch = useAppDispatch();
+    
     useEffect(() => {
         getCurrentUser()
             .then((res) =>{

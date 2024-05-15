@@ -4,14 +4,14 @@ interface AuthState {
     isLogin: boolean
     accessToken: string | null
     refreshToken: string | null
-    id: string
+    id: string | null
 }
 
 const initialState: AuthState = {
-    isLogin: false,
-    accessToken: null,
+    isLogin: localStorage.getItem('accessToken') != null,
+    accessToken: localStorage.getItem('accessToken'),
     refreshToken: null,
-    id: ''
+    id: localStorage.getItem('id')
 }
 
 export const authSlice = createSlice({
@@ -19,22 +19,17 @@ export const authSlice = createSlice({
     initialState,
     reducers: {
         addAuthToken: (state, action) => {
-            state.accessToken = action.payload,
-            state.isLogin = false;
             localStorage.setItem('accessToken', action.payload)
         },
         addRefreshToken: (state, action) => {
             state.refreshToken = action.payload
         },
         addId: (state, action) => {
-            state.id = action.payload
+            localStorage.setItem('id', action.payload)
         },
         logout: (state) => {
-            state.isLogin = false;
-            state.accessToken = null;
-            state.refreshToken = null;
-            state.id = '';
-            localStorage.removeItem('accessToken')
+            localStorage.removeItem('accessToken'),
+            localStorage.removeItem('id')
         }
     },
 })

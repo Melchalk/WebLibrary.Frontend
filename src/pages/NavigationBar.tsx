@@ -2,7 +2,7 @@ import { Container, Dropdown, DropdownButton, Nav, Navbar } from 'react-bootstra
 import { useAppSelector } from '../redux/hooks';
 
 export function NavigationBar(){
-    const isLogin = useAppSelector((state) => state.auth.isLogin)
+    const isLogin = useAppSelector(state => state.auth.isLogin)
 
     return(
         <Navbar bg="light" data-bs-theme="light">
@@ -12,7 +12,7 @@ export function NavigationBar(){
                     <Nav.Link href="/books">Книги</Nav.Link>
                     <Nav.Link href="/readers">Читатели</Nav.Link>
                     <Nav.Link href="/issues">Выдачи</Nav.Link>
-                    <Nav.Link href="/librarians">Работники</Nav.Link>
+                    <Nav.Link href="/librarians">Librarians</Nav.Link>
                 </Nav>
                 {isLogin ?
                     <DropdownButton id="dropdown-profile-button" title="Profile">
