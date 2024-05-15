@@ -22,6 +22,13 @@ export default function UpdatePersonModal(
                 setShowModal(false);
                 setShowToast(true);
 
+                setStateUpdateRequest(stateUpdateRequest =>
+                    ({...stateUpdateRequest, libraryNumber: null}))
+                setStateUpdateRequest(stateUpdateRequest =>
+                    ({...stateUpdateRequest, phone: null}))
+                setStateUpdateRequest(stateUpdateRequest =>
+                    ({...stateUpdateRequest, fullName: null}))
+
                 if (error.response) {
                     setError(error.response.data);
                   } else if (error.request) {

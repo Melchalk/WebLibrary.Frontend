@@ -41,7 +41,8 @@ export default function PersonalPage(){
                 }
 
                 dispatch(addId(res.data?.id));
-                setStateUpdateRequest(stateUpdateRequest => ({...stateUpdateRequest, id: res.data?.id}))               
+                setStateUpdateRequest(stateUpdateRequest =>
+                    ({...stateUpdateRequest, id: res.data?.id}))               
             })
             .catch((error) => {
                 setShowToast(true);
