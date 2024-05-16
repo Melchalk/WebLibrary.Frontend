@@ -64,7 +64,7 @@ export default function UpdateBookModal(
                     <FloatingLabel label="Title">
                         <Form.Control defaultValue={stateRequest.title ? stateRequest.title : "Не задано"}
                             isInvalid={stateRequest.title == null || stateRequest.title?.length == 0}
-                            placeholder="FullName" onChange={(t) => 
+                            placeholder="Title" onChange={(t) => 
                                 setStateRequest({...stateRequest, title: t.target.value})}/>
                     </FloatingLabel>
                     <FloatingLabel label="Author">
@@ -88,6 +88,12 @@ export default function UpdateBookModal(
                         <Form.Control defaultValue={stateRequest.cityPublishing? stateRequest.cityPublishing : "Не задано"}
                             placeholder="CityPublishing" onChange={(t) => 
                                 setStateRequest({...stateRequest, cityPublishing: t.target.value})}/>    
+                    </FloatingLabel>
+                    <FloatingLabel label="Номер библиотеки">
+                        <Form.Control  defaultValue={stateRequest.libraryNumber? stateRequest.libraryNumber : "Не задано"} 
+                            type="number" placeholder="Номер библиотеки" onChange={(t) => 
+                                setStateRequest({...stateRequest, libraryNumber:
+                                (!isNaN(Number(t.target.value)) && Number(t.target.value) != 0)  ? Number(t.target.value) : null})}/>
                     </FloatingLabel>
                 </Stack>
             </Modal.Body>

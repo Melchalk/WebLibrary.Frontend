@@ -5,12 +5,14 @@ import BooksTable from "../components/Book/BooksTable";
 import ErrorToast from "../components/ErrorToast";
 import CreateBookModal from "../components/Book/CreateBookModal";
 import UpdateBookModal from "../components/Book/UpdateBookModal";
+import { useAppSelector } from "../redux/hooks";
 
 export default function BookPage(){
     const [stateResponse, setStateResponse] = useState<GetBookResponse[]>();    
 
     const [stateCreateRequest, setStateCreateRequest] = useState<CreateBookRequest>({
         title: '',
+        libraryNumber: 0,
         author: null,
         numberPages: 0,
         yearPublishing: 0,
@@ -20,6 +22,7 @@ export default function BookPage(){
 
     const [stateUpdateRequest, setStateUpdateRequest] = useState<UpdateBookRequest>({
         id: '',
+        libraryNumber: null,
         title: null,
         author: null,
         numberPages: null,
@@ -34,8 +37,10 @@ export default function BookPage(){
     const [showToast, setShowToast] = useState(false);
     const [errorMessage, setError] = useState<any>();
 
+    const libraryNumber = useAppSelector((state) => state.auth.libraryNumber)
+
     useEffect(() => {
-        getBooks()
+        getBooks(libraryNumber!)
             .then((res) =>{
                 if (stateResponse != res.data){
                     setStateResponse(res.data);

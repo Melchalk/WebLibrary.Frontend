@@ -1,6 +1,7 @@
 import { appApiIns } from "./AppApi";
 
 export interface CreateBookRequest{
+    libraryNumber: number,
     hallNo: number | null,
     title: string,
     author: string | null,
@@ -11,6 +12,7 @@ export interface CreateBookRequest{
 
 export interface UpdateBookRequest{
     id: string,
+    libraryNumber: number | null,
     hallNo: number | null,
     title: string | null,
     author: string | null,
@@ -21,6 +23,7 @@ export interface UpdateBookRequest{
 
 export interface GetBookResponse{
     id: string,
+    libraryNumber: number,
     hallNo: number | null,
     title: string,
     author: string | null,
@@ -33,6 +36,7 @@ export interface GetBookResponse{
 export function createBook(request:CreateBookRequest){
     return appApiIns.post('book/create',{
         hallNo: request.hallNo,
+        libraryNumber: request.libraryNumber,
         title: request.title,
         author: request.author,
         numberPages: request.numberPages,
@@ -49,8 +53,12 @@ export function getBook(id:string){
     });
 }
 
-export function getBooks(){
-    return appApiIns.get('book/get/all');
+export function getBooks(libraryNumber:number){
+    return appApiIns.get('book/get/all',{
+        params: {
+            libraryNumber: libraryNumber
+        }
+    });
 }
 
 export function deleteBook(id:string){
@@ -64,6 +72,7 @@ export function deleteBook(id:string){
 export function updateBook(request:UpdateBookRequest){
     return appApiIns.put('book/update',{
         id: request.id,
+        libraryNumber: request.libraryNumber,
         hallNo: request.hallNo,
         title: request.title,
         author: request.author,

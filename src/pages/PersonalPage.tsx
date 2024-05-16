@@ -2,9 +2,8 @@ import { useEffect, useState } from "react";
 import { GetLibrarianResponse, UpdateLibrarianRequest } from "../api/LibrarianApi";
 import { useAppDispatch } from "../redux/hooks";
 import { Button, Stack } from "react-bootstrap";
-import { getCurrentUser, deleteCurrentUser } from "../auth/AuthService";
-import { addId, logout } from "../redux/authSlice";
-import { useNavigate } from "react-router-dom";
+import { getCurrentUser } from "../auth/AuthService";
+import { addId, addLibraryNumber } from "../redux/authSlice";
 import UpdatePersonModal from "../components/User/UpdatePersonModal";
 import ErrorToast from "../components/ErrorToast";
 import DeletePersonModal from "../components/User/DeletePersonModal";
@@ -30,7 +29,6 @@ export default function PersonalPage(){
     const [showUpdateModal, setShowUpdateModal] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
 
-    const navigate = useNavigate();
     const dispatch = useAppDispatch();
 
     useEffect(() => {
@@ -44,6 +42,7 @@ export default function PersonalPage(){
                 }
 
                 dispatch(addId(res.data?.id));
+                dispatch(addLibraryNumber(res.data?.libraryNumber))
             })
             .catch((error) => {
                 setShowToast(true);
