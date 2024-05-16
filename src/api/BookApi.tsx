@@ -9,6 +9,16 @@ export interface CreateBookRequest{
     cityPublishing: string | null
 }
 
+export interface UpdateBookRequest{
+    id: string,
+    hallNo: number | null,
+    title: string | null,
+    author: string | null,
+    numberPages: number | null,
+    yearPublishing: number | null,
+    cityPublishing: string | null
+}
+
 export interface GetBookResponse{
     id: string,
     hallNo: number | null,
@@ -48,5 +58,17 @@ export function deleteBook(id:string){
         params: {
             id: id
         }
+    });
+}
+
+export function updateBook(request:UpdateBookRequest){
+    return appApiIns.put('book/update',{
+        id: request.id,
+        hallNo: request.hallNo,
+        title: request.title,
+        author: request.author,
+        numberPages: request.numberPages,
+        yearPublishing: request.yearPublishing,
+        cityPublishing: request.cityPublishing
     });
 }

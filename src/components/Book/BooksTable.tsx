@@ -1,7 +1,10 @@
 import { Table } from "react-bootstrap";
-import { GetBookResponse } from "../../api/BookApi";
+import { GetBookResponse, UpdateBookRequest } from "../../api/BookApi";
 
-export default function BooksTable(stateResponse: GetBookResponse[]){
+export default function BooksTable(
+    stateResponse: GetBookResponse[],
+    setShowUpdateModal: React.Dispatch<React.SetStateAction<boolean>>,
+    setStateUpdateRequest: React.Dispatch<React.SetStateAction<UpdateBookRequest>>){
     return(
         <Table className="mx-auto" striped bordered hover>
             <thead>
@@ -17,7 +20,10 @@ export default function BooksTable(stateResponse: GetBookResponse[]){
             </thead>
             <tbody>
                 {stateResponse?.map((item:GetBookResponse) =>
-                    <tr>
+                    <tr key={item.id} onClick={() => {(
+                            setStateUpdateRequest(item),
+                            setShowUpdateModal(true)
+                        )}}>
                         <td>{item.id}</td>
                         <td>{item.title}</td>
                         <td>{item.author != null ? item.author : "Неизвестно"}</td>

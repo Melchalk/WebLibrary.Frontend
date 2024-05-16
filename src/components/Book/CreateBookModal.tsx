@@ -25,9 +25,9 @@ export default function CreateBookModal(
                 if (error.response) {
                     setError(error.response.data);
                 } else if (error.request) {
-                setError(error.request);
+                    setError(error.request);
                 } else {
-                setError(error.message);
+                    setError(error.message);
                 }
             })
     };
@@ -53,15 +53,17 @@ export default function CreateBookModal(
                     </FloatingLabel>
                     <FloatingLabel label="NumberPages">
                         <Form.Control defaultValue={stateRequest.numberPages? stateRequest.numberPages : "Не задано"} 
+                            isInvalid={stateRequest.numberPages <= 0}
                             type="number" placeholder="NumberPages" onChange={(t) => 
                                 setStateRequest({...stateRequest, numberPages:
-                                (!isNaN(Number(t.target.value)) && Number(t.target.value) != 0)  ? Number(t.target.value) : null})}/>
+                                    Number(t.target.value) <= 0  ? Number(t.target.value) : stateRequest.numberPages})}/>
                     </FloatingLabel>
                     <FloatingLabel label="YearPublishing">
                         <Form.Control  defaultValue={stateRequest.yearPublishing? stateRequest.yearPublishing : "Не задано"} 
+                            isInvalid={stateRequest.yearPublishing <= 0}
                             type="number" placeholder="YearPublishing" onChange={(t) => 
                                 setStateRequest({...stateRequest, yearPublishing:
-                                (!isNaN(Number(t.target.value)) && Number(t.target.value) != 0)  ? Number(t.target.value) : null})}/>
+                                    Number(t.target.value) <= 0  ? Number(t.target.value) : stateRequest.yearPublishing})}/>
                     </FloatingLabel>
                     <FloatingLabel label="CityPublishing">
                         <Form.Control defaultValue={stateRequest.cityPublishing? stateRequest.cityPublishing : "Не задано"}
