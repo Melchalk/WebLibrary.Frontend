@@ -125,7 +125,7 @@ export function RegisterPage() {
             setStateRequest({...stateRequest, phone: t.target.value})}/>
         </FloatingLabel>
         <FloatingLabel label="Пароль">
-          <Form.Control type="Пароль" placeholder="Password" onChange={(t) => 
+          <Form.Control type="password" placeholder="Пароль" onChange={(t) => 
             setStateRequest({...stateRequest, password: t.target.value})}/>
         </FloatingLabel>
         <Button variant="warning" className="mx-auto"  onClick={() => onRegisterUser()}>Ok</Button>

@@ -70,13 +70,6 @@ export default function CreateBookModal(
                             placeholder="CityPublishing" onChange={(t) => 
                                 setStateRequest({...stateRequest, cityPublishing: t.target.value})}/>    
                     </FloatingLabel>
-                    <FloatingLabel label="Номер библиотеки">
-                        <Form.Control  defaultValue={stateRequest.libraryNumber? stateRequest.libraryNumber : "Не задано"} 
-                            isInvalid={stateRequest.libraryNumber <= 0}
-                            type="number" placeholder="Номер библиотеки" onChange={(t) => 
-                                setStateRequest({...stateRequest, libraryNumber:
-                                    Number(t.target.value) >= 0 ? Number(t.target.value) : stateRequest.libraryNumber})}/>
-                    </FloatingLabel>
                 </Stack>
             </Modal.Body>
             <Modal.Footer>

@@ -40,7 +40,10 @@ export default function BookPage(){
     const libraryNumber = useAppSelector((state) => state.auth.libraryNumber)
 
     useEffect(() => {
-        getBooks(libraryNumber!)
+        if (libraryNumber != null){
+            setStateCreateRequest(stateCreateRequest => ({...stateCreateRequest, libraryNumber: libraryNumber}));
+
+            getBooks(libraryNumber!)
             .then((res) =>{
                 if (stateResponse != res.data){
                     setStateResponse(res.data);
@@ -55,13 +58,14 @@ export default function BookPage(){
                 } else {
                     setError(error.message);
             }})
+        }
     }, []);  
 
     return(
         <>
             <Button variant="warning" className="col-md-1.5 mb-3" onClick={() => setShowCreateModal(true)}>Создать книгу</Button>
 
-            {stateResponse?.length == 0 ? <h2>Книги не найдены</h2> :
+            {libraryNumber == null || stateResponse?.length == 0 ? <h2>Книги не найдены</h2> :
                 BooksTable(stateResponse!, setShowUpdateModal, setStateUpdateRequest)}
 
             {CreateBookModal(

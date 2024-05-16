@@ -89,12 +89,6 @@ export default function UpdateBookModal(
                             placeholder="CityPublishing" onChange={(t) => 
                                 setStateRequest({...stateRequest, cityPublishing: t.target.value})}/>    
                     </FloatingLabel>
-                    <FloatingLabel label="Номер библиотеки">
-                        <Form.Control  defaultValue={stateRequest.libraryNumber? stateRequest.libraryNumber : "Не задано"} 
-                            type="number" placeholder="Номер библиотеки" onChange={(t) => 
-                                setStateRequest({...stateRequest, libraryNumber:
-                                (!isNaN(Number(t.target.value)) && Number(t.target.value) != 0)  ? Number(t.target.value) : null})}/>
-                    </FloatingLabel>
                 </Stack>
             </Modal.Body>
             <Modal.Footer>
