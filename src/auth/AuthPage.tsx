@@ -1,7 +1,7 @@
-import { Button, FloatingLabel, Form, Stack } from "react-bootstrap";
+import { Button, FloatingLabel, Form, Nav, Stack, Toast, ToastContainer } from "react-bootstrap";
 import { useAppDispatch } from "../redux/hooks";
 import { addAuthToken, addRefreshToken, logout } from "../redux/authSlice";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { RegisterRequest, loginUser, registerUser } from "./AuthService";
 import ErrorToast from "../components/ErrorToast";
@@ -9,12 +9,24 @@ import ErrorToast from "../components/ErrorToast";
 export function LogoutPage() {
   const dispatch = useAppDispatch();
 
-  useEffect(() => { 
-      dispatch(logout());
-  });
+  const [show, setShow] = useState(true);
+
+  const onLogout = () =>{
+    dispatch(logout());
+  };
 
   return (
-    <h1>Successful account logout</h1>
+    <>
+      <ToastContainer className = "p-3" position='top-end'>
+        <Toast show={show} onClose={() => setShow(false)}>
+          <Toast.Header>
+            <strong className="me-auto">Error</strong>
+          </Toast.Header>
+          <Toast.Body>Successful account logout</Toast.Body>
+        </Toast>
+      </ToastContainer>
+      {onLogout()}
+    </>
   );
 }
 
@@ -49,17 +61,20 @@ export function LoginPage() {
 
     return (
       <>
-      <Stack gap={3} className="col-md-2 mx-auto mb-3">
-        <FloatingLabel controlId="floatingInput" label="Phone" >
-          <Form.Control type="phone" placeholder="name@example.com" onChange={(t) => setStatePhone(t.target.value)}/>
+      <Stack gap={3} className="col-md-2 mx-auto mb-3 mt-5">
+        <FloatingLabel controlId="floatingInput" label="Номер телефона" >
+          <Form.Control type="phone" placeholder="Номер телефона" onChange={(t) => setStatePhone(t.target.value)}/>
         </FloatingLabel>
-        <FloatingLabel controlId="floatingPassword" label="Password">
-          <Form.Control type="password" placeholder="Password" onChange={(t) => setStatePassword(t.target.value)}/>
+        <FloatingLabel controlId="floatingPassword" label="Пароль">
+          <Form.Control type="password" placeholder="Пароль" onChange={(t) => setStatePassword(t.target.value)}/>
         </FloatingLabel>
         <Button variant="warning" className="mx-auto" onClick={() => onLoginUser()}>Ok</Button>
+        <Nav.Item className="mx-auto">
+          <Nav.Link href="/register">Регистрация</Nav.Link>
+        </Nav.Item>
       </Stack>
-      <br />
-        {ErrorToast(show, setShow, errorMessage)}
+    
+      {ErrorToast(show, setShow, errorMessage)}
       </>
     );
 }
@@ -100,22 +115,25 @@ export function RegisterPage() {
 
   return (
     <>
-      <Stack gap={3} className="col-md-2 mx-auto mb-3">
-        <FloatingLabel label="FullName">
-          <Form.Control placeholder="FullName" onChange={(t) => 
+      <Stack gap={3} className="col-md-2 mx-auto mb-3 mt-5">
+        <FloatingLabel label="ФИО">
+          <Form.Control placeholder="ФИО" onChange={(t) => 
             setStateRequest({...stateRequest, fullName: t.target.value})}/>
         </FloatingLabel>
-        <FloatingLabel label="Phone">
-          <Form.Control placeholder="Number" onChange={(t) => 
+        <FloatingLabel label="Номер телефона">
+          <Form.Control placeholder="Номер телефона" onChange={(t) => 
             setStateRequest({...stateRequest, phone: t.target.value})}/>
         </FloatingLabel>
-        <FloatingLabel label="Password">
-          <Form.Control type="password" placeholder="Password" onChange={(t) => 
+        <FloatingLabel label="Пароль">
+          <Form.Control type="Пароль" placeholder="Password" onChange={(t) => 
             setStateRequest({...stateRequest, password: t.target.value})}/>
         </FloatingLabel>
         <Button variant="warning" className="mx-auto"  onClick={() => onRegisterUser()}>Ok</Button>
+        <Nav.Item className="mx-auto">
+          <Nav.Link href="/auth">Login</Nav.Link>
+        </Nav.Item>
       </Stack>
-      <br />
+
       {ErrorToast(show, setShow, errorMessage)}
     </>
   );

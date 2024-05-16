@@ -19,9 +19,12 @@ export const authSlice = createSlice({
     initialState,
     reducers: {
         addAuthToken: (state, action) => {
-            localStorage.setItem('accessToken', action.payload)
+            localStorage.setItem('accessToken', action.payload);
+            state.accessToken = action.payload;
+            state.isLogin = true;
         },
         addRefreshToken: (state, action) => {
+            localStorage.setItem('refreshToken', action.payload);
             state.refreshToken = action.payload
         },
         addId: (state, action) => {
@@ -30,6 +33,7 @@ export const authSlice = createSlice({
         logout: (state) => {
             localStorage.removeItem('accessToken'),
             localStorage.removeItem('id')
+            state.isLogin = false;
         }
     },
 })

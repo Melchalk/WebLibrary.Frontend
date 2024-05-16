@@ -5,8 +5,9 @@ import { Button, Stack } from "react-bootstrap";
 import { getCurrentUser, deleteCurrentUser } from "../auth/AuthService";
 import { addId, logout } from "../redux/authSlice";
 import { useNavigate } from "react-router-dom";
-import UpdatePersonModal from "../components/UpdatePersonModal";
+import UpdatePersonModal from "../components/User/UpdatePersonModal";
 import ErrorToast from "../components/ErrorToast";
+import DeletePersonModal from "../components/User/DeletePersonModal";
 
 export default function PersonalPage(){
     const [stateResponse, setStateResponse] = useState<GetLibrarianResponse>({
@@ -26,7 +27,8 @@ export default function PersonalPage(){
     const [showToast, setShowToast] = useState(false);
     const [errorMessage, setError] = useState<any>();
 
-    const [showModal, setShowModal] = useState(false);
+    const [showUpdateModal, setShowUpdateModal] = useState(false);
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
 
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
@@ -54,14 +56,6 @@ export default function PersonalPage(){
                 }})
     }, []);  
 
-    const onDelete = () => {
-        deleteCurrentUser()
-            .then(() => {
-                dispatch(logout());
-                navigate('/home');
-            })
-    };
-
     return(
         <>
             <Stack gap={3} className="mx-auto">
@@ -69,13 +63,17 @@ export default function PersonalPage(){
                 <h4> ФИО: {stateResponse.fullName}</h4>
                 <h4> Номер телефона: {stateResponse.phone}</h4>
                 <h4 className="mb-5"> Номер библиотеки: {stateResponse.libraryNumber}</h4>
-                <Button variant="warning" className="col-md-2" onClick={() =>  setShowModal(true)}>Обновить аккаунт</Button>
-                <Button variant="danger" className="col-md-2" onClick={() => onDelete()}>Удалить аккаунт</Button>
+                <Stack gap={3} direction= "horizontal" >
+                    <Button variant="warning" className="col-md-1.5" onClick={() =>  setShowUpdateModal(true)}>Обновить аккаунт</Button>
+                    <Button variant="danger" className="col-md-1.5" onClick={() => setShowDeleteModal(true)}>Удалить аккаунт</Button>
+                </Stack>
             </Stack>
-            <br />
+
+            {DeletePersonModal(showDeleteModal, setShowDeleteModal, setShowToast, setError)}
             {UpdatePersonModal(
                 stateUpdateRequest, setStateUpdateRequest,
-                showModal, setShowModal, setShowToast, setError)}
+                showUpdateModal, setShowUpdateModal, setShowToast, setError)}
+                
             {ErrorToast(showToast, setShowToast, errorMessage)}
         </>
     );

@@ -6,7 +6,7 @@ export default function BooksTable(
     setShowUpdateModal: React.Dispatch<React.SetStateAction<boolean>>,
     setStateUpdateRequest: React.Dispatch<React.SetStateAction<UpdateBookRequest>>){
     return(
-        <Table className="mx-auto" striped bordered hover>
+        <Table className="mx-auto" striped hover>
             <thead>
                 <tr>
                 <th>Id</th>

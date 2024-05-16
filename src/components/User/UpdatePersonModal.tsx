@@ -1,7 +1,7 @@
 import { FloatingLabel, Form, Stack } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { UpdateLibrarianRequest, updateLibrarian } from '../api/LibrarianApi';
+import { UpdateLibrarianRequest, updateLibrarian } from '../../api/LibrarianApi';
 import { useNavigate } from 'react-router-dom';
 
 export default function UpdatePersonModal(
