@@ -2,7 +2,7 @@ import { FloatingLabel, Form, Stack } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useNavigate } from 'react-router-dom';
-import { CreateBookRequest, createBook } from '../api/BookApi';
+import { CreateBookRequest, createBook } from '../../api/BookApi';
 
 export default function CreateBookModal(
     stateRequest: CreateBookRequest, setStateRequest: any,

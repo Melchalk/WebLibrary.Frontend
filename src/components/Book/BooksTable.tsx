@@ -1,5 +1,5 @@
 import { Table } from "react-bootstrap";
-import { GetBookResponse } from "../api/BookApi";
+import { GetBookResponse } from "../../api/BookApi";
 
 export default function BooksTable(stateResponse: GetBookResponse[]){
     return(

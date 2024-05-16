@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { CreateBookRequest, GetBookResponse, getBooks } from "../api/BookApi";
-import BooksTable from "../components/BooksTable";
+import BooksTable from "../components/Book/BooksTable";
 import ErrorToast from "../components/ErrorToast";
-import CreateBookModal from "../components/CreateBookModal";
+import CreateBookModal from "../components/Book/CreateBookModal";
 
 export default function BookPage(){
     const [stateResponse, setStateResponse] = useState<GetBookResponse[]>();    
