@@ -35,14 +35,13 @@ export default function PersonalPage(){
         getCurrentUser()
             .then((res) =>{
                 setStateResponse(res.data);
+                setStateUpdateRequest(res.data);            
                 
                 if (stateResponse.libraryNumber == null){
                     setStateResponse(stateResponse => ({...stateResponse, libraryNumber: 'Не задан'}));
                 }
 
                 dispatch(addId(res.data?.id));
-                setStateUpdateRequest(stateUpdateRequest =>
-                    ({...stateUpdateRequest, id: res.data?.id}))               
             })
             .catch((error) => {
                 setShowToast(true);

@@ -12,7 +12,6 @@ export function NavigationBar(){
                     <Nav.Link href="/books">Книги</Nav.Link>
                     <Nav.Link href="/readers">Читатели</Nav.Link>
                     <Nav.Link href="/issues">Выдачи</Nav.Link>
-                    <Nav.Link href="/librarians">Librarians</Nav.Link>
                 </Nav>
                 {isLogin ?
                     <DropdownButton id="dropdown-profile-button" title="Profile">

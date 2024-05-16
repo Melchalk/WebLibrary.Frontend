@@ -22,13 +22,6 @@ export default function UpdatePersonModal(
                 setShowModal(false);
                 setShowToast(true);
 
-                setStateUpdateRequest(stateUpdateRequest =>
-                    ({...stateUpdateRequest, libraryNumber: null}))
-                setStateUpdateRequest(stateUpdateRequest =>
-                    ({...stateUpdateRequest, phone: null}))
-                setStateUpdateRequest(stateUpdateRequest =>
-                    ({...stateUpdateRequest, fullName: null}))
-
                 if (error.response) {
                     setError(error.response.data);
                   } else if (error.request) {
@@ -48,17 +41,20 @@ export default function UpdatePersonModal(
             <Modal.Body>
                 <Stack gap={3} className="mx-auto">
                     <FloatingLabel label="FullName">
-                        <Form.Control placeholder="FullName" onChange={(t) => 
+                        <Form.Control value={stateUpdateRequest.fullName? stateUpdateRequest.fullName : "Не задано"} 
+                            placeholder="FullName" onChange={(t) => 
                             setStateUpdateRequest({...stateUpdateRequest, fullName: t.target.value})}/>
                     </FloatingLabel>
                     <FloatingLabel label="Phone">
-                        <Form.Control placeholder="Number" onChange={(t) => 
-                            setStateUpdateRequest({...stateUpdateRequest, phone: t.target.value})}/>
+                        <Form.Control value={stateUpdateRequest.phone? stateUpdateRequest.phone : "Не задано"}
+                            placeholder="Number" onChange={(t) => 
+                            setStateUpdateRequest({...stateUpdateRequest, phone: t.target.value})}/>    
                     </FloatingLabel>
                     <FloatingLabel label="LibraryId">
-                        <Form.Control type="id" placeholder="LibraryId" onChange={(t) => 
+                        <Form.Control  value={stateUpdateRequest.libraryNumber? stateUpdateRequest.libraryNumber : "Не задано"} 
+                            type="id" placeholder="LibraryId" onChange={(t) => 
                             setStateUpdateRequest({...stateUpdateRequest, libraryNumber:
-                                t.target.value != null ? Number(t.target.value) : null})}/>
+                                (!isNaN(Number(t.target.value)) && Number(t.target.value) != 0)  ? Number(t.target.value) : null})}/>
                     </FloatingLabel>
                 </Stack>
             </Modal.Body>
