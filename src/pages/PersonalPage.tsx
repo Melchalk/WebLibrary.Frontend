@@ -64,19 +64,19 @@ export default function PersonalPage(){
 
     return(
         <>
-        <Stack gap={3} className="mx-auto">
-            <h1> Личный кабинет</h1>
-            <h4> ФИО: {stateResponse.fullName}</h4>
-            <h4> Номер телефона: {stateResponse.phone}</h4>
-            <h4 className="mb-5"> Номер библиотеки: {stateResponse.libraryNumber}</h4>
-            <Button variant="warning" className="col-md-2" onClick={() =>  setShowModal(true)}>Обновить аккаунт</Button>
-            <Button variant="danger" className="col-md-2" onClick={() => onDelete()}>Удалить аккаунт</Button>
-        </Stack>
-        <br />
-        {UpdatePersonModal(
-            stateUpdateRequest, setStateUpdateRequest,
-            showModal, setShowModal, setShowToast, setError)}
-        {ErrorToast(showToast, setShowToast, errorMessage)}
+            <Stack gap={3} className="mx-auto">
+                <h1> Личный кабинет</h1>
+                <h4> ФИО: {stateResponse.fullName}</h4>
+                <h4> Номер телефона: {stateResponse.phone}</h4>
+                <h4 className="mb-5"> Номер библиотеки: {stateResponse.libraryNumber}</h4>
+                <Button variant="warning" className="col-md-2" onClick={() =>  setShowModal(true)}>Обновить аккаунт</Button>
+                <Button variant="danger" className="col-md-2" onClick={() => onDelete()}>Удалить аккаунт</Button>
+            </Stack>
+            <br />
+            {UpdatePersonModal(
+                stateUpdateRequest, setStateUpdateRequest,
+                showModal, setShowModal, setShowToast, setError)}
+            {ErrorToast(showToast, setShowToast, errorMessage)}
         </>
     );
 }

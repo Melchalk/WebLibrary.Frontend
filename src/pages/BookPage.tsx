@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { CreateBookRequest, GetBookResponse, getBooks } from "../api/BookApi";
 import BooksTable from "../components/BooksTable";
+import ErrorToast from "../components/ErrorToast";
+import CreateBookModal from "../components/CreateBookModal";
 
 export default function BookPage(){
     const [stateResponse, setStateResponse] = useState<GetBookResponse[]>();    
@@ -14,6 +16,8 @@ export default function BookPage(){
         cityPublishing: null,
         hallNo: null
     });    
+
+    const [showModal, setShowModal] = useState(false);
 
     const [showToast, setShowToast] = useState(false);
     const [errorMessage, setError] = useState<any>();
@@ -36,9 +40,14 @@ export default function BookPage(){
 
     return(
         <>
-        <Button variant="warning" className="col-md-1.5 mb-3">Создать книгу</Button>
+            <Button variant="warning" className="col-md-1.5 mb-3" onClick={() => setShowModal(true)}>Создать книгу</Button>
 
-        {BooksTable(stateResponse!)}
+            {stateResponse?.length == 0 ? <h2>Книги не найдены</h2> : BooksTable(stateResponse!)}
+
+            {CreateBookModal(
+                stateCreateRequest, setStateCreateRequest,
+                showModal, setShowModal, setShowToast, setError)}
+            {ErrorToast(showToast, setShowToast, errorMessage)}
         </>
     )
 }
