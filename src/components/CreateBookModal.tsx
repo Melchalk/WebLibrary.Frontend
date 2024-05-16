@@ -41,7 +41,8 @@ export default function CreateBookModal(
             <Modal.Body> 
                 <Stack gap={3} className="mx-auto">
                     <FloatingLabel label="Title">
-                        <Form.Control defaultValue={stateRequest.title ? stateRequest.title : "Не задано"} 
+                        <Form.Control defaultValue={stateRequest.title ? stateRequest.title : "Не задано"}
+                            isInvalid={stateRequest.title == null || stateRequest.title?.length == 0}
                             placeholder="FullName" onChange={(t) => 
                                 setStateRequest({...stateRequest, title: t.target.value})}/>
                     </FloatingLabel>

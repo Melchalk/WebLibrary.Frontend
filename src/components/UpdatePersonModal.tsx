@@ -42,16 +42,18 @@ export default function UpdatePersonModal(
                 <Stack gap={3} className="mx-auto">
                     <FloatingLabel label="FullName">
                         <Form.Control defaultValue={stateRequest.fullName? stateRequest.fullName : "Не задано"} 
+                            isInvalid={stateRequest.fullName == null || stateRequest.fullName?.length == 0}
                             placeholder="FullName" onChange={(t) => 
                                 setStateRequest({...stateRequest, fullName: t.target.value})}/>
                     </FloatingLabel>
                     <FloatingLabel label="Phone">
                         <Form.Control defaultValue={stateRequest.phone? stateRequest.phone : "Не задано"}
+                            isInvalid={stateRequest.phone == null || stateRequest.phone?.length == 0}
                             placeholder="Number" onChange={(t) => 
                                 setStateRequest({...stateRequest, phone: t.target.value})}/>    
                     </FloatingLabel>
                     <FloatingLabel label="LibraryId">
-                        <Form.Control  defaultValue={stateRequest.libraryNumber? stateRequest.libraryNumber : "Не задано"} 
+                        <Form.Control  value={stateRequest.libraryNumber? stateRequest.libraryNumber : "Не задано"} 
                             type="id" placeholder="LibraryId" onChange={(t) => 
                                 setStateRequest({...stateRequest, libraryNumber:
                                 (!isNaN(Number(t.target.value)) && Number(t.target.value) != 0)  ? Number(t.target.value) : null})}/>
