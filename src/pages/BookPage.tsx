@@ -1,21 +1,18 @@
-import { useState } from "react";
-import { Table } from "react-bootstrap";
-import { CreateBookRequest, GetBookResponse } from "../api/BookApi";
+import { useEffect, useState } from "react";
+import { Button } from "react-bootstrap";
+import { CreateBookRequest, GetBookResponse, UpdateBookRequest, getBooks } from "../api/BookApi";
+import BooksTable from "../components/Book/BooksTable";
+import ErrorToast from "../components/ErrorToast";
+import CreateBookModal from "../components/Book/CreateBookModal";
+import UpdateBookModal from "../components/Book/UpdateBookModal";
+import { useAppSelector } from "../redux/hooks";
 
 export default function BookPage(){
-    const [stateResponse, setStateResponse] = useState<GetBookResponse>({
-        id: '',
-        title: '',
-        author: null,
-        numberPages: 0,
-        yearPublishing: 0,
-        cityPublishing: null,
-        issueId: null,
-        hallNo: null
-    });    
+    const [stateResponse, setStateResponse] = useState<GetBookResponse[]>();    
 
     const [stateCreateRequest, setStateCreateRequest] = useState<CreateBookRequest>({
         title: '',
+        libraryNumber: 0,
         author: null,
         numberPages: 0,
         yearPublishing: 0,
@@ -23,35 +20,62 @@ export default function BookPage(){
         hallNo: null
     });    
 
+    const [stateUpdateRequest, setStateUpdateRequest] = useState<UpdateBookRequest>({
+        id: '',
+        libraryNumber: null,
+        title: null,
+        author: null,
+        numberPages: null,
+        yearPublishing: null,
+        cityPublishing: null,
+        hallNo: null
+    });      
+
+    const [showCreateModal, setShowCreateModal] = useState(false);
+    const [showUpdateModal, setShowUpdateModal] = useState(false);
+
+    const [showToast, setShowToast] = useState(false);
+    const [errorMessage, setError] = useState<any>();
+
+    const libraryNumber = useAppSelector((state) => state.auth.libraryNumber)
+
+    useEffect(() => {
+        if (libraryNumber != null){
+            setStateCreateRequest(stateCreateRequest => ({...stateCreateRequest, libraryNumber: libraryNumber}));
+
+            getBooks(libraryNumber!)
+            .then((res) =>{
+                if (stateResponse != res.data){
+                    setStateResponse(res.data);
+                }
+            })
+            .catch((error) => {
+                setShowToast(true);
+                if (error.response) {
+                    setError(error.response.data);
+                } else if (error.request) {
+                    setError(error.request);
+                } else {
+                    setError(error.message);
+            }})
+        }
+    }, []);  
+
     return(
-        <Table className="mx-auto" striped bordered hover>
-            <thead>
-                <tr>
-                <th>#</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Username</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                <td>1</td>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                </tr>
-                <tr>
-                <td>2</td>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-                </tr>
-                <tr>
-                <td>3</td>
-                <td colSpan={2}>Larry the Bird</td>
-                <td>@twitter</td>
-                </tr>
-            </tbody>
-        </Table>
+        <>
+            <Button variant="warning" className="col-md-1.5 mb-3" onClick={() => setShowCreateModal(true)}>Создать книгу</Button>
+
+            {libraryNumber == null || stateResponse?.length == 0 ? <h2>Книги не найдены</h2> :
+                BooksTable(stateResponse!, setShowUpdateModal, setStateUpdateRequest)}
+
+            {CreateBookModal(
+                stateCreateRequest, setStateCreateRequest,
+                showCreateModal, setShowCreateModal, setShowToast, setError)}
+            {UpdateBookModal(
+                stateUpdateRequest!, setStateUpdateRequest,
+                showUpdateModal, setShowUpdateModal, setShowToast, setError)}
+
+            {ErrorToast(showToast, setShowToast, errorMessage)}
+        </>
     )
 }

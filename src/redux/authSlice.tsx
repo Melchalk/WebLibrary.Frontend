@@ -4,14 +4,16 @@ interface AuthState {
     isLogin: boolean
     accessToken: string | null
     refreshToken: string | null
-    id: string | null
+    id: string | null,
+    libraryNumber: number | null
 }
 
 const initialState: AuthState = {
     isLogin: localStorage.getItem('accessToken') != null,
     accessToken: localStorage.getItem('accessToken'),
     refreshToken: null,
-    id: localStorage.getItem('id')
+    id: localStorage.getItem('id'),
+    libraryNumber: localStorage.getItem('id') ? null : Number(localStorage.getItem('id'))
 }
 
 export const authSlice = createSlice({
@@ -19,19 +21,26 @@ export const authSlice = createSlice({
     initialState,
     reducers: {
         addAuthToken: (state, action) => {
-            localStorage.setItem('accessToken', action.payload)
+            localStorage.setItem('accessToken', action.payload);
+            state.accessToken = action.payload;
+            state.isLogin = true;
         },
         addRefreshToken: (state, action) => {
+            localStorage.setItem('refreshToken', action.payload);
             state.refreshToken = action.payload
         },
         addId: (state, action) => {
             localStorage.setItem('id', action.payload)
         },
+        addLibraryNumber: (state, action) => {
+            localStorage.setItem('libraryNumber', action.payload)
+        },
         logout: (state) => {
             localStorage.removeItem('accessToken'),
             localStorage.removeItem('id')
+            state.isLogin = false;
         }
     },
 })
 
-export const { addAuthToken, addRefreshToken, addId, logout} = authSlice.actions
+export const { addAuthToken, addRefreshToken, addId, logout, addLibraryNumber } = authSlice.actions
