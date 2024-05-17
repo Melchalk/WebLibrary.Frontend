@@ -37,7 +37,7 @@ export default function PersonalPage(){
                 setStateResponse(res.data);
                 setStateUpdateRequest(res.data);            
                 
-                if (stateResponse.libraryNumber == null){
+                if (res.data?.libraryNumber == null){
                     setStateResponse(stateResponse => ({...stateResponse, libraryNumber: 'Не задан'}));
                 }
 
@@ -61,7 +61,7 @@ export default function PersonalPage(){
                 <h1> Личный кабинет</h1>
                 <h4> ФИО: {stateResponse.fullName}</h4>
                 <h4> Номер телефона: {stateResponse.phone}</h4>
-                <h4 className="mb-5"> Номер библиотеки: {stateResponse.libraryNumber}</h4>
+                <h4> Номер библиотеки: {stateResponse.libraryNumber}</h4>
                 <Stack gap={3} direction= "horizontal" >
                     <Button variant="warning" className="col-md-1.5" onClick={() =>  setShowUpdateModal(true)}>Обновить аккаунт</Button>
                     <Button variant="danger" className="col-md-1.5" onClick={() => setShowDeleteModal(true)}>Удалить аккаунт</Button>
@@ -69,8 +69,8 @@ export default function PersonalPage(){
             </Stack>
 
             {DeletePersonModal(showDeleteModal, setShowDeleteModal, setShowToast, setError)}
-            {UpdatePersonModal(
-                stateUpdateRequest, setStateUpdateRequest,
+            
+            {UpdatePersonModal(stateUpdateRequest, setStateUpdateRequest,
                 showUpdateModal, setShowUpdateModal, setShowToast, setError)}
                 
             {ErrorToast(showToast, setShowToast, errorMessage)}

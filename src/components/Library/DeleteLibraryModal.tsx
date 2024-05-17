@@ -1,25 +1,26 @@
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useNavigate } from 'react-router-dom';
-import { deleteCurrentUser } from '../../auth/AuthService';
 import { useAppDispatch } from '../../redux/hooks';
 import { logout } from '../../redux/authSlice';
+import { deleteLibrary } from '../../api/LibraryApi';
 
-export default function DeletePersonModal(
+export default function DeleteLibraryModal(
+    number: number,
     show:boolean, setShowModal: any,
     setShowToast: any, setError: React.Dispatch<any>) {
 
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
     
-    const onDeleteUser = () => {
-        deleteCurrentUser()
+    const onDeleteLibrary = () => {
+        deleteLibrary(number)
             .then(() => {
                 dispatch(logout());
-                navigate('/home');
+                navigate('/libraries');
             })
             .catch((error) => {
-                navigate('/account');
+                navigate('/libraries');
                 setShowModal(false);
                 setShowToast(true);
 
@@ -37,16 +38,16 @@ export default function DeletePersonModal(
         <>
         <Modal show={show} onClose={() => setShowModal(false)}>
             <Modal.Header closeButton onClick={() => setShowModal(false)}>
-            <Modal.Title>Удаление аккаунта</Modal.Title>
+            <Modal.Title>Удаление библиотеки</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <h6>Вы уверены, что хотите удалить аккаунт?</h6>
+                <h6>Вы уверены, что хотите удалить библиотеку?</h6>
             </Modal.Body>
             <Modal.Footer>
             <Button variant="secondary" onClick={() => setShowModal(false)}>
                 Close
             </Button>
-            <Button variant="danger" onClick={() => onDeleteUser()}>
+            <Button variant="danger" onClick={() => onDeleteLibrary()}>
                 Delete
             </Button>
             </Modal.Footer>

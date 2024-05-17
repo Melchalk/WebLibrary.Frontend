@@ -121,7 +121,7 @@ export function RegisterPage() {
             setStateRequest({...stateRequest, fullName: t.target.value})}/>
         </FloatingLabel>
         <FloatingLabel label="Номер телефона">
-          <Form.Control placeholder="Номер телефона" onChange={(t) => 
+          <Form.Control type="phone" placeholder="Номер телефона" onChange={(t) => 
             setStateRequest({...stateRequest, phone: t.target.value})}/>
         </FloatingLabel>
         <FloatingLabel label="Пароль">
