@@ -10,8 +10,8 @@ export function NavigationBar(){
                     <Nav.Link href="/readers">Читатели</Nav.Link>
                     <Nav.Link href="/issues">Выдачи</Nav.Link>
                 </Nav>
-                <DropdownButton id="dropdown-profile-button" title="Profile">
-                    <Dropdown.Item href="/account">Твой аккаунт</Dropdown.Item>
+                <DropdownButton id="dropdown-profile-button" title="Аккаунт">
+                    <Dropdown.Item href="/account">Твой профиль</Dropdown.Item>
                     <Dropdown.Item href="/logout">Выйти</Dropdown.Item>
                 </DropdownButton>
             </Container>

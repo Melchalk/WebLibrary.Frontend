@@ -40,30 +40,30 @@ export default function UpdateLibraryModal(
             </Modal.Header>
             <Modal.Body> 
                 <Stack gap={3} className="mx-auto">
-                    <FloatingLabel label="Title">
+                    <FloatingLabel label="Название">
                         <Form.Control defaultValue={stateRequest.title ? stateRequest.title : "Не задано"}
                             isInvalid={stateRequest.title?.length == 0}
-                            placeholder="Title" onChange={(t) => 
+                            placeholder="Название" onChange={(t) => 
                                 setStateRequest({...stateRequest, title: t.target.value})}/>
                     </FloatingLabel>
-                    <FloatingLabel label="Address">
+                    <FloatingLabel label="Адрес">
                         <Form.Control defaultValue={stateRequest.address? stateRequest.address : "Не задано"}
-                            placeholder="Address" onChange={(t) => 
+                            placeholder="Адрес" onChange={(t) => 
                                 setStateRequest({...stateRequest, address: t.target.value})}/>    
                     </FloatingLabel>
-                    <FloatingLabel label="Phone">
+                    <FloatingLabel label="Номер телефона">
                         <Form.Control defaultValue={stateRequest.phone? stateRequest.phone : "Не задано"}
-                            placeholder="Phone" onChange={(t) => 
+                            placeholder="Номер телефона" onChange={(t) => 
                                 setStateRequest({...stateRequest, phone: t.target.value})}/>    
                     </FloatingLabel>
                 </Stack>
             </Modal.Body>
             <Modal.Footer>
             <Button variant="secondary" onClick={() => setShowModal(false)}>
-                Close
+                Закрыть
             </Button>
             <Button variant="primary" onClick={() => onUpdateLibrary()}>
-                Save Changes
+                Обновить
             </Button>
             </Modal.Footer>
         </Modal>

@@ -44,22 +44,22 @@ export default function CreateLibraryModal(
             </Modal.Header>
             <Modal.Body> 
                 <Stack gap={3} className="mx-auto">
-                    <FloatingLabel label="Title">
+                    <FloatingLabel label="Название">
                         <Form.Control defaultValue={stateRequest.title ? stateRequest.title : "Не задано"}
                             isInvalid={stateRequest.title == null || stateRequest.title?.length == 0}
-                            placeholder="Title" onChange={(t) => 
+                            placeholder="Название" onChange={(t) => 
                                 setStateRequest({...stateRequest, title: t.target.value})}/>
                     </FloatingLabel>
-                    <FloatingLabel label="Address">
+                    <FloatingLabel label="Адрес">
                         <Form.Control defaultValue={stateRequest.address? stateRequest.address : "Не задано"}
                             isInvalid={stateRequest.title == null || stateRequest.title?.length == 0}
-                            placeholder="Address" onChange={(t) => 
+                            placeholder="Адрес" onChange={(t) => 
                                 setStateRequest({...stateRequest, address: t.target.value})}/>    
                     </FloatingLabel>
-                    <FloatingLabel label="Phone">
+                    <FloatingLabel label="Номер телефона">
                         <Form.Control defaultValue={stateRequest.phone? stateRequest.phone : "Не задано"}
                             isInvalid={stateRequest.title == null || stateRequest.title?.length == 0}
-                            placeholder="Phone" onChange={(t) => 
+                            placeholder="Номер телефона" onChange={(t) => 
                                 setStateRequest({...stateRequest, phone: t.target.value})}/>    
                     </FloatingLabel>
                 </Stack>

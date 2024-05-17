@@ -45,10 +45,10 @@ export default function DeleteLibraryModal(
             </Modal.Body>
             <Modal.Footer>
             <Button variant="secondary" onClick={() => setShowModal(false)}>
-                Close
+                Закрыть
             </Button>
             <Button variant="danger" onClick={() => onDeleteLibrary()}>
-                Delete
+                Удалить
             </Button>
             </Modal.Footer>
         </Modal>

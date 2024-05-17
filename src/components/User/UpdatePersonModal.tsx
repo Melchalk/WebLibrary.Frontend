@@ -40,21 +40,21 @@ export default function UpdatePersonModal(
             </Modal.Header>
             <Modal.Body>
                 <Stack gap={3} className="mx-auto">
-                    <FloatingLabel label="FullName">
+                    <FloatingLabel label="ФИО">
                         <Form.Control defaultValue={stateRequest.fullName? stateRequest.fullName : "Не задано"} 
                             isInvalid={stateRequest.fullName == null || stateRequest.fullName?.length == 0}
-                            placeholder="FullName" onChange={(t) => 
+                            placeholder="ФИО" onChange={(t) => 
                                 setStateRequest({...stateRequest, fullName: t.target.value})}/>
                     </FloatingLabel>
-                    <FloatingLabel label="Phone">
+                    <FloatingLabel label="Номер телефона">
                         <Form.Control defaultValue={stateRequest.phone? stateRequest.phone : "Не задано"}
                             isInvalid={stateRequest.phone == null || stateRequest.phone?.length == 0}
-                            placeholder="Number" onChange={(t) => 
+                            placeholder="Номер телефона" onChange={(t) => 
                                 setStateRequest({...stateRequest, phone: t.target.value})}/>    
                     </FloatingLabel>
-                    <FloatingLabel label="LibraryId">
+                    <FloatingLabel label="Номер библиотеки">
                         <Form.Control  value={stateRequest.libraryNumber? stateRequest.libraryNumber : "Не задано"} 
-                            type="id" placeholder="LibraryId" onChange={(t) => 
+                            type="number" placeholder="Номер библиотеки" onChange={(t) => 
                                 setStateRequest({...stateRequest, libraryNumber:
                                 (!isNaN(Number(t.target.value)) && Number(t.target.value) != 0)  ? Number(t.target.value) : null})}/>
                     </FloatingLabel>

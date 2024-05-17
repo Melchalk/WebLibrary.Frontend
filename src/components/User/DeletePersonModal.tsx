@@ -44,10 +44,10 @@ export default function DeletePersonModal(
             </Modal.Body>
             <Modal.Footer>
             <Button variant="secondary" onClick={() => setShowModal(false)}>
-                Close
+                Закрыть
             </Button>
             <Button variant="danger" onClick={() => onDeleteUser()}>
-                Delete
+                Удалить
             </Button>
             </Modal.Footer>
         </Modal>

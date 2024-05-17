@@ -10,12 +10,12 @@ export default function BooksTable(
             <thead>
                 <tr>
                 <th>Id</th>
-                <th>Title</th>
-                <th>Author</th>
-                <th>NumberPages</th>
-                <th>YearPublishing</th>
-                <th>CityPublishing</th>
-                <th>IssueId</th>
+                <th>Название</th>
+                <th>Автор</th>
+                <th>Количество страниц</th>
+                <th>Год публикации</th>
+                <th>Город публикации</th>
+                <th>Номер выдачи</th>
                 </tr>
             </thead>
             <tbody>

@@ -61,45 +61,45 @@ export default function UpdateBookModal(
             </Modal.Header>
             <Modal.Body> 
                 <Stack gap={3} className="mx-auto">
-                    <FloatingLabel label="Title">
+                    <FloatingLabel label="Название">
                         <Form.Control defaultValue={stateRequest.title ? stateRequest.title : "Не задано"}
                             isInvalid={stateRequest.title == null || stateRequest.title?.length == 0}
-                            placeholder="Title" onChange={(t) => 
+                            placeholder="Название" onChange={(t) => 
                                 setStateRequest({...stateRequest, title: t.target.value})}/>
                     </FloatingLabel>
-                    <FloatingLabel label="Author">
+                    <FloatingLabel label="Автор">
                         <Form.Control defaultValue={stateRequest.author? stateRequest.author : "Не задано"}
-                            placeholder="Author" onChange={(t) => 
+                            placeholder="Автор" onChange={(t) => 
                                 setStateRequest({...stateRequest, author: t.target.value})}/>    
                     </FloatingLabel>
-                    <FloatingLabel label="NumberPages">
+                    <FloatingLabel label="Количество страниц">
                         <Form.Control defaultValue={stateRequest.numberPages? stateRequest.numberPages : "Не задано"} 
-                            type="number" placeholder="NumberPages" onChange={(t) => 
+                            type="number" placeholder="Количество страниц" onChange={(t) => 
                                 setStateRequest({...stateRequest, numberPages:
                                 (!isNaN(Number(t.target.value)) && Number(t.target.value) != 0)  ? Number(t.target.value) : null})}/>
                     </FloatingLabel>
-                    <FloatingLabel label="YearPublishing">
+                    <FloatingLabel label="Год публикации">
                         <Form.Control  defaultValue={stateRequest.yearPublishing? stateRequest.yearPublishing : "Не задано"} 
-                            type="number" placeholder="YearPublishing" onChange={(t) => 
+                            type="number" placeholder="Год публикации" onChange={(t) => 
                                 setStateRequest({...stateRequest, yearPublishing:
                                 (!isNaN(Number(t.target.value)) && Number(t.target.value) != 0)  ? Number(t.target.value) : null})}/>
                     </FloatingLabel>
-                    <FloatingLabel label="CityPublishing">
+                    <FloatingLabel label="Город публикации">
                         <Form.Control defaultValue={stateRequest.cityPublishing? stateRequest.cityPublishing : "Не задано"}
-                            placeholder="CityPublishing" onChange={(t) => 
+                            placeholder="Город публикации" onChange={(t) => 
                                 setStateRequest({...stateRequest, cityPublishing: t.target.value})}/>    
                     </FloatingLabel>
                 </Stack>
             </Modal.Body>
             <Modal.Footer>
             <Button variant="danger" onClick={() => onDeleteBook()}>
-                Delete
+                Удалить
             </Button>    
             <Button variant="secondary" onClick={() => setShowModal(false)}>
-                Close
+                Закрыть
             </Button>
             <Button variant="primary" onClick={() => onUpdateBook()}>
-                Save Changes
+                Обновить
             </Button>
             </Modal.Footer>
         </Modal>
