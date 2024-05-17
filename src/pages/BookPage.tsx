@@ -72,7 +72,7 @@ export default function BookPage(){
 
             {CreateBookModal(stateCreateRequest, setStateCreateRequest,
                 showCreateModal, setShowCreateModal, setShowToast, setError)}
-            {UpdateBookModal(stateUpdateRequest!, setStateUpdateRequest,
+            {UpdateBookModal(stateUpdateRequest, setStateUpdateRequest,
                 showUpdateModal, setShowUpdateModal, setShowToast, setError)}
 
             {ErrorToast(showToast, setShowToast, errorMessage)}

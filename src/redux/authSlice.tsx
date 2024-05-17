@@ -13,7 +13,9 @@ const initialState: AuthState = {
     accessToken: localStorage.getItem('accessToken'),
     refreshToken: null,
     id: localStorage.getItem('id'),
-    libraryNumber: localStorage.getItem('id') ? null : Number(localStorage.getItem('id'))
+    libraryNumber: localStorage.getItem('libraryNumber') != 'null'
+        ? Number(localStorage.getItem('libraryNumber'))
+        : null
 }
 
 export const authSlice = createSlice({
@@ -31,9 +33,11 @@ export const authSlice = createSlice({
         },
         addId: (state, action) => {
             localStorage.setItem('id', action.payload)
+            state.id = action.payload;
         },
         addLibraryNumber: (state, action) => {
-            localStorage.setItem('libraryNumber', action.payload)
+            localStorage.setItem('libraryNumber', action.payload),
+            state.libraryNumber = action.payload;
         },
         logout: (state) => {
             localStorage.removeItem('accessToken'),

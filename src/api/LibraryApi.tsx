@@ -6,6 +6,13 @@ export interface CreateLibraryRequest{
     phone: string
 }
 
+export interface UpdateLibraryRequest{
+    number: number,
+    title: string | null,
+    address: string | null,
+    phone: string | null
+}
+
 export interface GetLibraryResponse{
     number: number,
     title: string,
@@ -14,7 +21,8 @@ export interface GetLibraryResponse{
     librariansCount: number,
     booksCount: number,
     issuesCount: number,
-    owner: string,
+    ownerPhone: string,
+    ownerName: string
 }
 
 export function createLibrary(request:CreateLibraryRequest){
@@ -42,5 +50,14 @@ export function deleteLibrary(number:number){
         params: {
             number: number
         }
+    });
+}
+
+export function updateLibrary(request:UpdateLibraryRequest){
+    return appApiIns.put('library/update',{
+        number: request.number,
+        title: request.title,
+        address: request.address,
+        phone: request.phone,
     });
 }

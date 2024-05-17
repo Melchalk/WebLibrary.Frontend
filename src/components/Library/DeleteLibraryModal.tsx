@@ -17,10 +17,10 @@ export default function DeleteLibraryModal(
         deleteLibrary(number)
             .then(() => {
                 dispatch(logout());
-                navigate('/home');
+                navigate('/libraries');
             })
             .catch((error) => {
-                navigate('/account');
+                navigate('/libraries');
                 setShowModal(false);
                 setShowToast(true);
 

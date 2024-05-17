@@ -2,22 +2,18 @@ import { FloatingLabel, Form, Stack } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useNavigate } from 'react-router-dom';
-import { CreateLibraryRequest, createLibrary } from '../../api/LibraryApi';
-import { useAppDispatch } from '../../redux/hooks';
-import { addLibraryNumber } from '../../redux/authSlice';
+import { UpdateLibraryRequest, updateLibrary } from '../../api/LibraryApi';
 
-export default function CreateLibraryModal(
-    stateRequest: CreateLibraryRequest, setStateRequest: any,
+export default function UpdateLibraryModal(
+    stateRequest: UpdateLibraryRequest, setStateRequest: any,
     show:boolean, setShowModal: any,
     setShowToast: any, setError: React.Dispatch<any>) {
 
     const navigate = useNavigate();
-    const dispatch = useAppDispatch();
     
-    const onCreateLibrary = () => {
-        createLibrary(stateRequest)
+    const onUpdateLibrary = () => {
+        updateLibrary(stateRequest)
             .then((res) =>{
-                dispatch(addLibraryNumber(res.data));
                 setShowModal(false);
                 navigate('/libraries');
             })
@@ -46,19 +42,17 @@ export default function CreateLibraryModal(
                 <Stack gap={3} className="mx-auto">
                     <FloatingLabel label="Title">
                         <Form.Control defaultValue={stateRequest.title ? stateRequest.title : "Не задано"}
-                            isInvalid={stateRequest.title == null || stateRequest.title?.length == 0}
+                            isInvalid={stateRequest.title?.length == 0}
                             placeholder="Title" onChange={(t) => 
                                 setStateRequest({...stateRequest, title: t.target.value})}/>
                     </FloatingLabel>
                     <FloatingLabel label="Address">
                         <Form.Control defaultValue={stateRequest.address? stateRequest.address : "Не задано"}
-                            isInvalid={stateRequest.title == null || stateRequest.title?.length == 0}
                             placeholder="Address" onChange={(t) => 
                                 setStateRequest({...stateRequest, address: t.target.value})}/>    
                     </FloatingLabel>
                     <FloatingLabel label="Phone">
                         <Form.Control defaultValue={stateRequest.phone? stateRequest.phone : "Не задано"}
-                            isInvalid={stateRequest.title == null || stateRequest.title?.length == 0}
                             placeholder="Phone" onChange={(t) => 
                                 setStateRequest({...stateRequest, phone: t.target.value})}/>    
                     </FloatingLabel>
@@ -68,7 +62,7 @@ export default function CreateLibraryModal(
             <Button variant="secondary" onClick={() => setShowModal(false)}>
                 Close
             </Button>
-            <Button variant="primary" onClick={() => onCreateLibrary()}>
+            <Button variant="primary" onClick={() => onUpdateLibrary()}>
                 Save Changes
             </Button>
             </Modal.Footer>
