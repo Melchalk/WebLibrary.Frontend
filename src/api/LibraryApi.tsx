@@ -11,9 +11,13 @@ export interface GetLibraryResponse{
     title: string,
     address: string,
     phone: string
+    librariansCount: number,
+    booksCount: number,
+    issuesCount: number,
+    owner: string,
 }
 
-export function createReader(request:CreateLibraryRequest){
+export function createLibrary(request:CreateLibraryRequest){
     return appApiIns.post('library/create',{
         title: request.title,
         address: request.address,

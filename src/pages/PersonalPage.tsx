@@ -69,8 +69,7 @@ export default function PersonalPage(){
             </Stack>
 
             {DeletePersonModal(showDeleteModal, setShowDeleteModal, setShowToast, setError)}
-            {UpdatePersonModal(
-                stateUpdateRequest, setStateUpdateRequest,
+            {UpdatePersonModal(stateUpdateRequest, setStateUpdateRequest,
                 showUpdateModal, setShowUpdateModal, setShowToast, setError)}
                 
             {ErrorToast(showToast, setShowToast, errorMessage)}

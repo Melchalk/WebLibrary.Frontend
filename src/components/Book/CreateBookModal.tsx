@@ -43,7 +43,7 @@ export default function CreateBookModal(
                     <FloatingLabel label="Title">
                         <Form.Control defaultValue={stateRequest.title ? stateRequest.title : "Не задано"}
                             isInvalid={stateRequest.title == null || stateRequest.title?.length == 0}
-                            placeholder="FullName" onChange={(t) => 
+                            placeholder="Title" onChange={(t) => 
                                 setStateRequest({...stateRequest, title: t.target.value})}/>
                     </FloatingLabel>
                     <FloatingLabel label="Author">

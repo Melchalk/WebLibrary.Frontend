@@ -5,6 +5,7 @@ import { LoginPage, LogoutPage, RegisterPage } from "./auth/AuthPage";
 import PersonalPage from './pages/PersonalPage';
 import BookPage from './pages/BookPage';
 import { useAppSelector } from './redux/hooks';
+import MainPage from './pages/MainPage';
 
 export default function App() {
   const isLogin = useAppSelector(state => state.auth.isLogin);
@@ -15,7 +16,8 @@ export default function App() {
           <Route path='/register' element={!isLogin ? <RegisterPage /> : <Navigate to='/account'/>}/>
           <Route path='/auth' element={!isLogin ? <LoginPage /> : <Navigate to='/account'/>}/>
 
-          <Route path='*' element={isLogin ? <Navigate to='/account'/> : <Navigate to='/auth'/>}/>
+          <Route path='*' element={isLogin ? <Navigate to='/libraries'/> : <Navigate to='/auth'/>}/>
+          <Route path='/libraries' element={isLogin ? <MainPage /> : <Navigate to='/auth'/>}/>
           <Route path='/account' element={isLogin ? <PersonalPage /> : <Navigate to='/auth'/>}/>
           <Route path='/logout' element={isLogin ? <LogoutPage /> : <Navigate to='/auth'/>}/>
           <Route path='/books' element={isLogin ? <BookPage />: <Navigate to='/auth'/>}/>

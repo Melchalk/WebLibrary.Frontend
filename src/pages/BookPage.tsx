@@ -63,16 +63,16 @@ export default function BookPage(){
 
     return(
         <>
-            <Button variant="warning" className="col-md-1.5 mb-3" onClick={() => setShowCreateModal(true)}>Создать книгу</Button>
+            {libraryNumber != null
+                ? <Button variant="warning" className="col-md-1.5 mb-3" onClick={() => setShowCreateModal(true)}>Создать книгу</Button>
+                : <h2>Чтобы добавить книгу - создайте библиотеку</h2>}
 
-            {libraryNumber == null || stateResponse?.length == 0 ? <h2>Книги не найдены</h2> :
+            {libraryNumber == null || stateResponse?.length == 0 ? <h4>Книги не найдены</h4> :
                 BooksTable(stateResponse!, setShowUpdateModal, setStateUpdateRequest)}
 
-            {CreateBookModal(
-                stateCreateRequest, setStateCreateRequest,
+            {CreateBookModal(stateCreateRequest, setStateCreateRequest,
                 showCreateModal, setShowCreateModal, setShowToast, setError)}
-            {UpdateBookModal(
-                stateUpdateRequest!, setStateUpdateRequest,
+            {UpdateBookModal(stateUpdateRequest!, setStateUpdateRequest,
                 showUpdateModal, setShowUpdateModal, setShowToast, setError)}
 
             {ErrorToast(showToast, setShowToast, errorMessage)}
