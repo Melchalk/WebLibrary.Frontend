@@ -6,4 +6,5 @@ import { store } from './redux/store.tsx';
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <Provider store={store}>
     <App />
-  </Provider>);
+  </Provider>
+);

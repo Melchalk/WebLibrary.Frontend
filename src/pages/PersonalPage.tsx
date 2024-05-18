@@ -52,7 +52,8 @@ export default function PersonalPage(){
                     setError(error.request);
                 } else {
                     setError(error.message);
-                }})
+                }
+            })
     }, []);  
 
     return(
@@ -62,6 +63,7 @@ export default function PersonalPage(){
                 <h4> ФИО: {stateResponse.fullName}</h4>
                 <h4> Номер телефона: {stateResponse.phone}</h4>
                 <h4> Номер библиотеки: {stateResponse.libraryNumber}</h4>
+
                 <Stack gap={3} direction= "horizontal" >
                     <Button variant="warning" className="col-md-1.5" onClick={() =>  setShowUpdateModal(true)}>Обновить аккаунт</Button>
                     <Button variant="danger" className="col-md-1.5" onClick={() => setShowDeleteModal(true)}>Удалить аккаунт</Button>

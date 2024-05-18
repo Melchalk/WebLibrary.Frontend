@@ -37,10 +37,9 @@ export default function CreateLibraryModal(
     };
 
     return (
-        <>
         <Modal show={show} onClose={() => setShowModal(false)}>
             <Modal.Header closeButton onClick={() => setShowModal(false)}>
-            <Modal.Title>Создание библиотеки</Modal.Title>
+                <Modal.Title>Создание библиотеки</Modal.Title>
             </Modal.Header>
             <Modal.Body> 
                 <Stack gap={3} className="mx-auto">
@@ -65,14 +64,9 @@ export default function CreateLibraryModal(
                 </Stack>
             </Modal.Body>
             <Modal.Footer>
-            <Button variant="secondary" onClick={() => setShowModal(false)}>
-                Close
-            </Button>
-            <Button variant="primary" onClick={() => onCreateLibrary()}>
-                Save Changes
-            </Button>
+                <Button variant="primary" onClick={() => onCreateLibrary()}> Создать </Button>
+                <Button variant="secondary" onClick={() => setShowModal(false)}> Закрыть </Button>                       
             </Modal.Footer>
         </Modal>
-        </>
   );
 }

@@ -33,10 +33,9 @@ export default function CreateBookModal(
     };
 
     return (
-        <>
         <Modal show={show} onClose={() => setShowModal(false)}>
             <Modal.Header closeButton onClick={() => setShowModal(false)}>
-            <Modal.Title>Добавление книги</Modal.Title>
+                <Modal.Title>Добавление книги</Modal.Title>
             </Modal.Header>
             <Modal.Body> 
                 <Stack gap={3} className="mx-auto">
@@ -73,14 +72,9 @@ export default function CreateBookModal(
                 </Stack>
             </Modal.Body>
             <Modal.Footer>
-            <Button variant="secondary" onClick={() => setShowModal(false)}>
-                Закрыть
-            </Button>
-            <Button variant="primary" onClick={() => onCreateBook()}>
-                Создать
-            </Button>
+                <Button variant="primary" onClick={() => onCreateBook()}> Создать </Button>
+                <Button variant="secondary" onClick={() => setShowModal(false)}> Закрыть </Button>
             </Modal.Footer>
         </Modal>
-        </>
   );
 }

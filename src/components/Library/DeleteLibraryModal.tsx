@@ -35,23 +35,17 @@ export default function DeleteLibraryModal(
     };
 
     return (
-        <>
         <Modal show={show} onClose={() => setShowModal(false)}>
             <Modal.Header closeButton onClick={() => setShowModal(false)}>
-            <Modal.Title>Удаление библиотеки</Modal.Title>
+                <Modal.Title>Удаление библиотеки</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <h6>Вы уверены, что хотите удалить библиотеку?</h6>
             </Modal.Body>
             <Modal.Footer>
-            <Button variant="secondary" onClick={() => setShowModal(false)}>
-                Закрыть
-            </Button>
-            <Button variant="danger" onClick={() => onDeleteLibrary()}>
-                Удалить
-            </Button>
+                <Button variant="danger" onClick={() => onDeleteLibrary()}> Удалить </Button>
+                <Button variant="secondary" onClick={() => setShowModal(false)}> Закрыть </Button>
             </Modal.Footer>
         </Modal>
-        </>
   );
 }

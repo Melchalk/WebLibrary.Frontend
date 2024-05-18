@@ -33,10 +33,9 @@ export default function UpdateLibraryModal(
     };
 
     return (
-        <>
         <Modal show={show} onClose={() => setShowModal(false)}>
             <Modal.Header closeButton onClick={() => setShowModal(false)}>
-            <Modal.Title>Создание библиотеки</Modal.Title>
+                <Modal.Title>Создание библиотеки</Modal.Title>
             </Modal.Header>
             <Modal.Body> 
                 <Stack gap={3} className="mx-auto">
@@ -59,14 +58,9 @@ export default function UpdateLibraryModal(
                 </Stack>
             </Modal.Body>
             <Modal.Footer>
-            <Button variant="secondary" onClick={() => setShowModal(false)}>
-                Закрыть
-            </Button>
-            <Button variant="primary" onClick={() => onUpdateLibrary()}>
-                Обновить
-            </Button>
+                <Button variant="primary" onClick={() => onUpdateLibrary()}> Обновить </Button>
+                <Button variant="secondary" onClick={() => setShowModal(false)}> Закрыть </Button>   
             </Modal.Footer>
         </Modal>
-        </>
   );
 }
