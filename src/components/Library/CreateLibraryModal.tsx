@@ -48,18 +48,21 @@ export default function CreateLibraryModal(
                             isInvalid={stateRequest.title == null || stateRequest.title?.length == 0}
                             placeholder="Название" onChange={(t) => 
                                 setStateRequest({...stateRequest, title: t.target.value})}/>
+                        <Form.Control.Feedback type="invalid"> Добавьте название </Form.Control.Feedback>
                     </FloatingLabel>
                     <FloatingLabel label="Адрес">
                         <Form.Control defaultValue={stateRequest.address? stateRequest.address : "Не задано"}
                             isInvalid={stateRequest.title == null || stateRequest.title?.length == 0}
                             placeholder="Адрес" onChange={(t) => 
                                 setStateRequest({...stateRequest, address: t.target.value})}/>    
+                        <Form.Control.Feedback type="invalid"> Добавьте адрес </Form.Control.Feedback>
                     </FloatingLabel>
                     <FloatingLabel label="Номер телефона">
                         <Form.Control defaultValue={stateRequest.phone? stateRequest.phone : "Не задано"}
                             isInvalid={stateRequest.title == null || stateRequest.title?.length == 0}
                             placeholder="Номер телефона" onChange={(t) => 
                                 setStateRequest({...stateRequest, phone: t.target.value})}/>    
+                        <Form.Control.Feedback type="invalid"> Добавьте номер телефона </Form.Control.Feedback>
                     </FloatingLabel>
                 </Stack>
             </Modal.Body>

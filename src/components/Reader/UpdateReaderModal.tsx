@@ -78,7 +78,7 @@ export default function UpdateReaderModal(
                     </FloatingLabel>
                     <FloatingLabel label="Возраст">
                         <Form.Control defaultValue={stateRequest.age? stateRequest.age : "Не задано"} 
-                            isInvalid={stateRequest.age != null && stateRequest.age <= 0}
+                            isInvalid={stateRequest.age != null && stateRequest.age <= 14}
                             type="number" placeholder="Возраст" onChange={(t) => 
                                 setStateRequest({...stateRequest, age:
                                     Number(t.target.value) >= 0 ? Number(t.target.value) : null})}/>

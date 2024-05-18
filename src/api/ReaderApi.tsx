@@ -1,5 +1,4 @@
 import { appApiIns } from "./AppApi";
-import { GetIssueResponse } from "./IssueApi";
 
 export interface CreateReaderRequest{
     fullName: string,

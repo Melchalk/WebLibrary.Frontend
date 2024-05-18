@@ -73,12 +73,15 @@ export default function UpdateBookModal(
                     </FloatingLabel>
                     <FloatingLabel label="Количество страниц">
                         <Form.Control defaultValue={stateRequest.numberPages? stateRequest.numberPages : "Не задано"} 
+                            isInvalid={stateRequest.numberPages != null && stateRequest.numberPages <= 0}
                             type="number" placeholder="Количество страниц" onChange={(t) => 
                                 setStateRequest({...stateRequest, numberPages:
                                 (!isNaN(Number(t.target.value)) && Number(t.target.value) != 0)  ? Number(t.target.value) : null})}/>
+                        <Form.Control.Feedback type="invalid"> год должен быть больше 0 </Form.Control.Feedback>
                     </FloatingLabel>
                     <FloatingLabel label="Год публикации">
                         <Form.Control  defaultValue={stateRequest.yearPublishing? stateRequest.yearPublishing : "Не задано"} 
+                            isInvalid={stateRequest.yearPublishing != null && stateRequest.yearPublishing <= 0}
                             type="number" placeholder="Год публикации" onChange={(t) => 
                                 setStateRequest({...stateRequest, yearPublishing:
                                 (!isNaN(Number(t.target.value)) && Number(t.target.value) != 0)  ? Number(t.target.value) : null})}/>

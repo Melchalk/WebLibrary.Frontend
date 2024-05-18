@@ -44,6 +44,7 @@ export default function CreateBookModal(
                             isInvalid={stateRequest.title == null || stateRequest.title?.length == 0}
                             placeholder="Название" onChange={(t) => 
                                 setStateRequest({...stateRequest, title: t.target.value})}/>
+                        <Form.Control.Feedback type="invalid"> Добавьте название </Form.Control.Feedback>
                     </FloatingLabel>
                     <FloatingLabel label="Автор">
                         <Form.Control defaultValue={stateRequest.author? stateRequest.author : "Не задано"}
@@ -56,6 +57,7 @@ export default function CreateBookModal(
                             type="number" placeholder="Количество страниц" onChange={(t) => 
                                 setStateRequest({...stateRequest, numberPages:
                                     Number(t.target.value) >= 0  ? Number(t.target.value) : stateRequest.numberPages})}/>
+                        <Form.Control.Feedback type="invalid"> Количество страниц должно быть больше 0 </Form.Control.Feedback>
                     </FloatingLabel>
                     <FloatingLabel label="Год">
                         <Form.Control  defaultValue={stateRequest.yearPublishing? stateRequest.yearPublishing : "Не задано"} 
@@ -63,6 +65,7 @@ export default function CreateBookModal(
                             type="number" placeholder="Год" onChange={(t) => 
                                 setStateRequest({...stateRequest, yearPublishing:
                                     Number(t.target.value) >= 0 ? Number(t.target.value) : stateRequest.yearPublishing})}/>
+                        <Form.Control.Feedback type="invalid"> год должен быть больше 0 </Form.Control.Feedback>
                     </FloatingLabel>
                     <FloatingLabel label="Город">
                         <Form.Control defaultValue={stateRequest.cityPublishing? stateRequest.cityPublishing : "Не задано"}
