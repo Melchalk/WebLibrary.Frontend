@@ -8,7 +8,7 @@ export interface CreateIssueRequest{
 
 export interface UpdateIssueRequest{
     id : string,
-    addPeriod: number,
+    addPeriod: number | null,
     booksId: string[] | null,
 }
 
@@ -35,8 +35,12 @@ export function getIssue(id:string){
     });
 }
 
-export function getIssues(){
-    return appApiIns.get('issue/get/all');
+export function getIssues(libraryNumber:number){
+    return appApiIns.get('issue/get/all',{
+        params: {
+            libraryNumber: libraryNumber
+        }
+    });
 }
 
 export function deleteIssue(id:string){

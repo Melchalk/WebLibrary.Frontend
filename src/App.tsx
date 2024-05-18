@@ -24,6 +24,7 @@ export default function App() {
           <Route path='/logout' element={isLogin ? <LogoutPage /> : <Navigate to='/auth'/>}/>
           <Route path='/books' element={isLogin ? <BookPage />: <Navigate to='/auth'/>}/>
           <Route path='/readers' element={isLogin ? <ReaderPage />: <Navigate to='/auth'/>}/>
+          <Route path='/issues' element={isLogin ? <ReaderPage />: <Navigate to='/auth'/>}/>
           <Route path='/librarians' element={isLogin ? <LibrarianPage /> : <Navigate to='/auth'/>}/>
         </Routes>
       </BrowserRouter>
