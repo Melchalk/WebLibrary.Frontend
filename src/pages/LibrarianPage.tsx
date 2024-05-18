@@ -24,7 +24,8 @@ export default function LibrarianPage(){
                     setError(error.request);
                 } else {
                     setError(error.message);
-            }})
+                }
+            })
     }, []);  
 
     return(

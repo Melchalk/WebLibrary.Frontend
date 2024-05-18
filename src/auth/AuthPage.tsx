@@ -61,20 +61,22 @@ export function LoginPage() {
 
     return (
       <>
-      <Stack gap={3} className="col-md-2 mx-auto mb-3 mt-5">
-        <FloatingLabel controlId="floatingInput" label="Номер телефона" >
-          <Form.Control type="phone" placeholder="Номер телефона" onChange={(t) => setStatePhone(t.target.value)}/>
-        </FloatingLabel>
-        <FloatingLabel controlId="floatingPassword" label="Пароль">
-          <Form.Control type="password" placeholder="Пароль" onChange={(t) => setStatePassword(t.target.value)}/>
-        </FloatingLabel>
-        <Button variant="warning" className="mx-auto" onClick={() => onLoginUser()}>Ok</Button>
-        <Nav.Item className="mx-auto">
-          <Nav.Link href="/register">Регистрация</Nav.Link>
-        </Nav.Item>
-      </Stack>
-    
-      {ErrorToast(show, setShow, errorMessage)}
+        <Stack gap={3} className="col-md-2 mx-auto mb-3 mt-5">
+          <FloatingLabel controlId="floatingInput" label="Номер телефона" >
+            <Form.Control type="phone" placeholder="Номер телефона" onChange={(t) => setStatePhone(t.target.value)}/>
+          </FloatingLabel>
+          <FloatingLabel controlId="floatingPassword" label="Пароль">
+            <Form.Control type="password" placeholder="Пароль" onChange={(t) => setStatePassword(t.target.value)}/>
+          </FloatingLabel>
+
+          <Button variant="warning" className="mx-auto" onClick={() => onLoginUser()}>Ok</Button>
+          
+          <Nav.Item className="mx-auto">
+            <Nav.Link href="/register">Регистрация</Nav.Link>
+          </Nav.Item>
+        </Stack>
+      
+        {ErrorToast(show, setShow, errorMessage)}
       </>
     );
 }
@@ -128,7 +130,9 @@ export function RegisterPage() {
           <Form.Control type="password" placeholder="Пароль" onChange={(t) => 
             setStateRequest({...stateRequest, password: t.target.value})}/>
         </FloatingLabel>
+
         <Button variant="warning" className="mx-auto"  onClick={() => onRegisterUser()}>Ok</Button>
+        
         <Nav.Item className="mx-auto">
           <Nav.Link href="/auth">Login</Nav.Link>
         </Nav.Item>

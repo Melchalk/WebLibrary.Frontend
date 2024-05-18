@@ -9,13 +9,13 @@ export default function ReadersTable(
         <Table className="mx-auto" striped hover>
             <thead>
                 <tr>
-                <th>Id</th>
-                <th>Полное имя</th>
-                <th>Номер телефона</th>
-                <th>Адрес регистрации</th>
-                <th>Возвраст</th>
-                <th>Разрешение на взятие книг</th>
-                <th>Номер выдачи</th>
+                    <th>Id</th>
+                    <th>Полное имя</th>
+                    <th>Номер телефона</th>
+                    <th>Адрес регистрации</th>
+                    <th>Возвраст</th>
+                    <th>Разрешение на взятие книг</th>
+                    <th>Номер выдачи</th>
                 </tr>
             </thead>
             <tbody>

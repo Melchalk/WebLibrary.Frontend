@@ -50,46 +50,48 @@ export default function MainPage(){
                     setError(error.request);
                 } else {
                     setError(error.message);
-            }})
+                }
+            })
         }
     }, []);  
 
     return(
         <>
-        {stateResponse != null ? 
-            <Stack gap={2} className="mx-auto">
-                <h1> Информация о библиотеке</h1>
-                <h4> Название: {stateResponse.title}</h4>
-                <h4> Адрес: {stateResponse.address}</h4>
-                <h4 className="mb-3"> Номер телефона: {stateResponse.phone}</h4>
+            {stateResponse != null
+            ?   <Stack gap={2} className="mx-auto">
+                    <h1> Информация о библиотеке</h1>
+                    <h4> Название: {stateResponse.title}</h4>
+                    <h4> Адрес: {stateResponse.address}</h4>
+                    <h4 className="mb-3"> Номер телефона: {stateResponse.phone}</h4>
 
-                <h2> Статистика</h2>
-                <h4> Сотрудники: {stateResponse.librariansCount}</h4>
-                <h4> Книги: {stateResponse.booksCount}</h4>
-                <h4 className="mb-3"> Выдачи: {stateResponse.issuesCount}</h4>
+                    <h2> Статистика</h2>
+                    <h4> Сотрудники: {stateResponse.librariansCount}</h4>
+                    <h4> Книги: {stateResponse.booksCount}</h4>
+                    <h4 className="mb-3"> Выдачи: {stateResponse.issuesCount}</h4>
 
-                <h3> Создана {stateResponse.ownerName} </h3>
-                <h5 className="mb-3"> Номер администратора: {stateResponse.ownerPhone}</h5>
-                <Stack gap={3} direction= "horizontal" >
-                    <Button variant="warning" className="col-md-1.5" onClick={() =>  setShowUpdateModal(true)}>Обновить</Button>
-                    <Button variant="danger" className="col-md-1.5" onClick={() => setShowDeleteModal(true)}>Удалить</Button>
+                    <h3> Создана {stateResponse.ownerName} </h3>
+                    <h5 className="mb-3"> Номер администратора: {stateResponse.ownerPhone}</h5>
+
+                    <Stack gap={3} direction= "horizontal" >
+                        <Button variant="warning" className="col-md-1.5" onClick={() =>  setShowUpdateModal(true)}>Обновить</Button>
+                        <Button variant="danger" className="col-md-1.5" onClick={() => setShowDeleteModal(true)}>Удалить</Button>
+                    </Stack>
                 </Stack>
-            </Stack>
-        :   <>
-            <Button variant="warning" className="col-md-1.5" onClick={() =>  setShowCreateModal(true)}>Создать библиотеку</Button>
-            <h2>Библиотека не найдены</h2>
-            </> 
-        }
+                : <>
+                    <Button variant="warning" className="col-md-1.5" onClick={() =>  setShowCreateModal(true)}>Создать библиотеку</Button>
+                    <h2>Библиотека не найдены</h2>
+                </> 
+            }
                     
-        {CreateLibraryModal(stateCreateRequest, setStateCreateRequest,
-            showCreateModal, setShowCreateModal, setShowToast, setError)}
+            {CreateLibraryModal(stateCreateRequest, setStateCreateRequest,
+                showCreateModal, setShowCreateModal, setShowToast, setError)}
 
-        {UpdateLibraryModal(stateUpdateRequest, setStateUpdateRequest,
-                showUpdateModal, setShowUpdateModal, setShowToast, setError)}
+            {UpdateLibraryModal(stateUpdateRequest, setStateUpdateRequest,
+                    showUpdateModal, setShowUpdateModal, setShowToast, setError)}
 
-        {DeleteLibraryModal(libraryNumber!, showDeleteModal, setShowDeleteModal, setShowToast, setError)}
+            {DeleteLibraryModal(libraryNumber!, showDeleteModal, setShowDeleteModal, setShowToast, setError)}
 
-        {ErrorToast(showToast, setShowToast, errorMessage)}
+            {ErrorToast(showToast, setShowToast, errorMessage)}
         </>
     )
 }

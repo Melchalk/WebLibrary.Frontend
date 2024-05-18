@@ -33,10 +33,9 @@ export default function UpdatePersonModal(
     };
 
     return (
-        <>
         <Modal show={show} onClose={() => setShowModal(false)}>
             <Modal.Header closeButton onClick={() => setShowModal(false)}>
-            <Modal.Title>Изменение аккаунта</Modal.Title>
+                <Modal.Title>Изменение аккаунта</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <Stack gap={3} className="mx-auto">
@@ -61,14 +60,9 @@ export default function UpdatePersonModal(
                 </Stack>
             </Modal.Body>
             <Modal.Footer>
-            <Button variant="secondary" onClick={() => setShowModal(false)}>
-                Close
-            </Button>
-            <Button variant="primary" onClick={() => onUpdateUser()}>
-                Save Changes
-            </Button>
+                <Button variant="primary" onClick={() => onUpdateUser()}> Обновить </Button>
+                <Button variant="secondary" onClick={() => setShowModal(false)}> Закрыть </Button>
             </Modal.Footer>
         </Modal>
-        </>
   );
 }

@@ -34,23 +34,17 @@ export default function DeletePersonModal(
     };
 
     return (
-        <>
         <Modal show={show} onClose={() => setShowModal(false)}>
             <Modal.Header closeButton onClick={() => setShowModal(false)}>
-            <Modal.Title>Удаление аккаунта</Modal.Title>
+                <Modal.Title>Удаление аккаунта</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <h6>Вы уверены, что хотите удалить аккаунт?</h6>
             </Modal.Body>
             <Modal.Footer>
-            <Button variant="secondary" onClick={() => setShowModal(false)}>
-                Закрыть
-            </Button>
-            <Button variant="danger" onClick={() => onDeleteUser()}>
-                Удалить
-            </Button>
+                <Button variant="danger" onClick={() => onDeleteUser()}> Удалить </Button>
+                <Button variant="secondary" onClick={() => setShowModal(false)}> Закрыть </Button>
             </Modal.Footer>
         </Modal>
-        </>
   );
 }

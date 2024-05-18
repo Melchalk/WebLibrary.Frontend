@@ -57,7 +57,8 @@ export default function BookPage(){
                     setError(error.request);
                 } else {
                     setError(error.message);
-            }})
+                }
+            })
         }
     }, []);  
 

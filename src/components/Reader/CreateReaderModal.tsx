@@ -33,10 +33,9 @@ export default function CreateReaderModal(
     };
 
     return (
-        <>
         <Modal show={show} onClose={() => setShowModal(false)}>
             <Modal.Header closeButton onClick={() => setShowModal(false)}>
-            <Modal.Title>Добавление книги</Modal.Title>
+                <Modal.Title>Добавление книги</Modal.Title>
             </Modal.Header>
             <Modal.Body> 
                 <Stack gap={3} className="mx-auto">
@@ -68,14 +67,9 @@ export default function CreateReaderModal(
                 </Stack>
             </Modal.Body>
             <Modal.Footer>
-            <Button variant="secondary" onClick={() => setShowModal(false)}>
-                Закрыть
-            </Button>
-            <Button variant="primary" onClick={() => onCreateReader()}>
-                Создать
-            </Button>
+                <Button variant="primary" onClick={() => onCreateReader()}> Создать </Button>
+                <Button variant="secondary" onClick={() => setShowModal(false)}> Закрыть </Button>       
             </Modal.Footer>
         </Modal>
-        </>
   );
 }

@@ -9,13 +9,13 @@ export default function BooksTable(
         <Table className="mx-auto" striped hover>
             <thead>
                 <tr>
-                <th>Id</th>
-                <th>Название</th>
-                <th>Автор</th>
-                <th>Количество страниц</th>
-                <th>Год публикации</th>
-                <th>Город публикации</th>
-                <th>Номер выдачи</th>
+                    <th>Id</th>
+                    <th>Название</th>
+                    <th>Автор</th>
+                    <th>Количество страниц</th>
+                    <th>Год публикации</th>
+                    <th>Город публикации</th>
+                    <th>Номер выдачи</th>
                 </tr>
             </thead>
             <tbody>

@@ -54,10 +54,9 @@ export default function UpdateReaderModal(
     };
 
     return (
-        <>
         <Modal show={show} onClose={() => setShowModal(false)}>
             <Modal.Header closeButton onClick={() => setShowModal(false)}>
-            <Modal.Title>Обновление книги</Modal.Title>
+                <Modal.Title>Обновление книги</Modal.Title>
             </Modal.Header>
             <Modal.Body> 
                 <Stack gap={3} className="mx-auto">
@@ -87,17 +86,10 @@ export default function UpdateReaderModal(
                 </Stack>
             </Modal.Body>
             <Modal.Footer>
-            <Button variant="danger" onClick={() => onDeleteReader()}>
-                Удалить
-            </Button>    
-            <Button variant="secondary" onClick={() => setShowModal(false)}>
-                Закрыть
-            </Button>
-            <Button variant="primary" onClick={() => onUpdateReader()}>
-                Обновить
-            </Button>
+                <Button variant="primary" onClick={() => onUpdateReader()}> Обновить </Button>
+                <Button variant="secondary" onClick={() => setShowModal(false)}> Закрыть </Button>
+                <Button variant="danger" onClick={() => onDeleteReader()}> Удалить </Button>    
             </Modal.Footer>
         </Modal>
-        </>
   );
 }

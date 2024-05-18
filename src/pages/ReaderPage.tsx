@@ -45,7 +45,8 @@ export default function PeaderPage(){
                     setError(error.request);
                 } else {
                     setError(error.message);
-            }})
+                }
+            })
     }, []);  
 
     return(
