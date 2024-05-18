@@ -35,8 +35,12 @@ export function getIssue(id:string){
     });
 }
 
-export function getIssues(libraryNumber:number){
-    return appApiIns.get('issue/get/all',{
+export function getIssues(){
+    return appApiIns.get('issue/get/all');
+}
+
+export function getIssuesInLibrary(libraryNumber:number){
+    return appApiIns.get('issue/get/library',{
         params: {
             libraryNumber: libraryNumber
         }

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
-import { CreateIssueRequest, GetIssueResponse, getIssues } from "../api/IssueApi";
+import { CreateIssueRequest, GetIssueResponse, getIssuesInLibrary } from "../api/IssueApi";
 import IssuesTable from "../components/Issue/IssuesTable";
 import ErrorToast from "../components/ErrorToast";
 import CreateIssueModal from "../components/Issue/CreateIssueModal";
@@ -27,7 +27,7 @@ export default function IssuePage(){
         if (libraryNumber != null){
             setStateCreateRequest(stateCreateRequest => ({...stateCreateRequest, libraryNumber: libraryNumber}));
 
-            getIssues(libraryNumber!)
+            getIssuesInLibrary(libraryNumber!)
             .then((res) =>{
                 if (stateResponse != res.data){
                     setStateResponse(res.data);
