@@ -31,7 +31,7 @@ export default function PeaderPage(){
     const [errorMessage, setError] = useState<any>();
 
     useEffect(() => {
-            getReaders()
+        getReaders()
             .then((res) =>{
                 if (stateResponse != res.data){
                     setStateResponse(res.data);

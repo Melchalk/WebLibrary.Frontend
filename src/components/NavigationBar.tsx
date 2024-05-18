@@ -9,6 +9,7 @@ export function NavigationBar(){
                     <Nav.Link href="/books">Книги</Nav.Link>
                     <Nav.Link href="/readers">Читатели</Nav.Link>
                     <Nav.Link href="/issues">Выдачи</Nav.Link>
+                    <Nav.Link href="/librarians">Работники</Nav.Link>
                 </Nav>
                 <DropdownButton id="dropdown-profile-button" title="Аккаунт">
                     <Dropdown.Item href="/account">Твой профиль</Dropdown.Item>
