@@ -8,6 +8,14 @@ export interface CreateReaderRequest{
     age: number,
 }
 
+export interface UpdateReaderRequest{
+    id: string,
+    fullName: string | null,
+    phone: string | null,
+    registrationAddress: string | null,
+    age: number | null,
+}
+
 export interface GetReaderResponse{
     id: string,
     fullName: string,
@@ -15,7 +23,7 @@ export interface GetReaderResponse{
     registrationAddress: string | null,
     age: number,
     canTakeBooks: boolean,
-    issue: GetIssueResponse | null
+    issueId: string | null
 }
 
 export function createReader(request:CreateReaderRequest){
@@ -44,5 +52,15 @@ export function deleteReader(id:string){
         params: {
             id: id
         }
+    });
+}
+
+export function updateReader(request:UpdateReaderRequest){
+    return appApiIns.put('reader/update',{
+        id: request.id,
+        fullName: request.fullName,
+        phone: request.phone,
+        registrationAddress: request.registrationAddress,
+        age: request.age,
     });
 }

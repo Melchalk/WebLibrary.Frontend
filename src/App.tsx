@@ -1,11 +1,12 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import { NavigationBar } from "./pages/NavigationBar";
+import { NavigationBar } from "./components/NavigationBar";
 import { LoginPage, LogoutPage, RegisterPage } from "./auth/AuthPage";
 import PersonalPage from './pages/PersonalPage';
 import BookPage from './pages/BookPage';
 import { useAppSelector } from './redux/hooks';
 import MainPage from './pages/MainPage';
+import ReaderPage from './pages/ReaderPage';
 
 export default function App() {
   const isLogin = useAppSelector(state => state.auth.isLogin);
@@ -21,6 +22,7 @@ export default function App() {
           <Route path='/account' element={isLogin ? <PersonalPage /> : <Navigate to='/auth'/>}/>
           <Route path='/logout' element={isLogin ? <LogoutPage /> : <Navigate to='/auth'/>}/>
           <Route path='/books' element={isLogin ? <BookPage />: <Navigate to='/auth'/>}/>
+          <Route path='/readers' element={isLogin ? <ReaderPage />: <Navigate to='/auth'/>}/>
         </Routes>
       </BrowserRouter>
   );

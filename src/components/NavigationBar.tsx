@@ -2,7 +2,7 @@ import { Container, Dropdown, DropdownButton, Nav, Navbar } from 'react-bootstra
 
 export function NavigationBar(){
     return(
-        <Navbar bg="light" data-bs-theme="light">
+        <Navbar bg="light" data-bs-theme="light" className="mb-3">
             <Container>
                 <Navbar.Brand href="/libraries">Библиотека</Navbar.Brand>
                 <Nav className="me-auto">
