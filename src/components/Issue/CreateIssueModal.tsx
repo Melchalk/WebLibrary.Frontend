@@ -3,14 +3,16 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useNavigate } from 'react-router-dom';
 import { CreateIssueRequest, createIssue } from '../../api/IssueApi';
+import { GetBookResponse } from '../../api/BookApi';
 
 export default function CreateIssueModal(
+    stateBookResponse: GetBookResponse[],
     stateRequest: CreateIssueRequest, setStateRequest: any,
     show:boolean, setShowModal: any,
     setShowToast: any, setError: React.Dispatch<any>) {
 
     const navigate = useNavigate();
-    
+
     const onCreateIssue = () => {
         createIssue(stateRequest)
             .then(() =>{
@@ -54,13 +56,10 @@ export default function CreateIssueModal(
                                     Number(t.target.value) >= 0  ? Number(t.target.value) : stateRequest.period})}/>
                         <Form.Control.Feedback type="invalid"> Период должен быть положительным </Form.Control.Feedback>
                     </FloatingLabel>
-                    <FloatingLabel label="Год">
-                        <Form.Control  defaultValue={stateRequest.booksId? stateRequest.booksId : "Не задано"} 
-                            isInvalid={stateRequest.booksId == null} placeholder="Год" onChange={(t) => 
-                                setStateRequest({...stateRequest, booksId:
-                                    Number(t.target.value) >= 0 ? Number(t.target.value) : stateRequest.booksId})}/>
-                        <Form.Control.Feedback type="invalid"> Добавьте название </Form.Control.Feedback>
-                    </FloatingLabel>
+                        <Form.Select isInvalid={stateRequest.booksId == null} multiple
+                        onChange={(value) => setStateRequest({...stateRequest, booksId: [value.target.value]})} >
+                            {stateBookResponse?.map((item:GetBookResponse) => <option key={item.id} value={item.id}>{item.title}</option>)}
+                        </Form.Select>
                 </Stack>
             </Modal.Body>
             <Modal.Footer>

@@ -5,18 +5,28 @@ import IssuesTable from "../components/Issue/IssuesTable";
 import ErrorToast from "../components/ErrorToast";
 import CreateIssueModal from "../components/Issue/CreateIssueModal";
 import { useAppSelector } from "../redux/hooks";
+import { GetBookResponse, getFreeBooks } from "../api/BookApi";
+import DeleteIssueModal from "../components/Issue/DeleteIssueModal";
 
 export default function IssuePage(){
     const [stateResponse, setStateResponse] = useState<GetIssueResponse[]>();    
+    const [stateBookIdResponse, setStateBookIdResponse] = useState<GetBookResponse[]>();    
 
     const [stateCreateRequest, setStateCreateRequest] = useState<CreateIssueRequest>({
         readerId: '',
         period: 0,
-        booksId: ['']
+        booksId: []
+    });    
+
+    const [stateOne, setStateOne] = useState<GetIssueResponse>({
+        id: '',
+        readerId: '',
+        returnDate: '',
+        booksId: []
     });    
 
     const [showCreateModal, setShowCreateModal] = useState(false);
-    const [showUpdateModal, setShowUpdateModal] = useState(false);
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
 
     const [showToast, setShowToast] = useState(false);
     const [errorMessage, setError] = useState<any>();
@@ -28,21 +38,36 @@ export default function IssuePage(){
             setStateCreateRequest(stateCreateRequest => ({...stateCreateRequest, libraryNumber: libraryNumber}));
 
             getIssuesInLibrary(libraryNumber!)
-            .then((res) =>{
-                if (stateResponse != res.data){
-                    setStateResponse(res.data);
-                }
-            })
-            .catch((error) => {
-                setShowToast(true);
-                if (error.response) {
-                    setError(error.response.data);
-                } else if (error.request) {
-                    setError(error.request);
-                } else {
-                    setError(error.message);
-                }
-            })
+                .then((res) =>{
+                    if (stateResponse != res.data){
+                        setStateResponse(res.data);
+                    }
+                })
+                .catch((error) => {
+                    setShowToast(true);
+                    if (error.response) {
+                        setError(error.response.data);
+                    } else if (error.request) {
+                        setError(error.request);
+                    } else {
+                        setError(error.message);
+                    }
+                })
+
+            getFreeBooks(libraryNumber)
+                .then((res) =>{
+                    setStateBookIdResponse(res.data);
+                })
+                .catch((error) => {
+                    setShowToast(true);
+                    if (error.response) {
+                        setError(error.response.data);
+                    } else if (error.request) {
+                        setError(error.request);
+                    } else {
+                        setError(error.message);
+                    }
+                })
         }
     }, []);  
 
@@ -53,10 +78,13 @@ export default function IssuePage(){
                 : <h2>Чтобы добавить выдачу - создайте библиотеку</h2>}
 
             {libraryNumber == null || stateResponse?.length == 0 ? <h4>Выдачи не найдены</h4> :
-                IssuesTable(stateResponse!, setShowUpdateModal)}
+                IssuesTable(stateResponse!, setStateOne, setShowDeleteModal)}
 
-            {CreateIssueModal(stateCreateRequest, setStateCreateRequest,
+            {CreateIssueModal(stateBookIdResponse!, stateCreateRequest, setStateCreateRequest,
                 showCreateModal, setShowCreateModal, setShowToast, setError)}
+
+
+            {DeleteIssueModal(stateOne, showDeleteModal, setShowDeleteModal, setShowToast, setError)}
 
             {ErrorToast(showToast, setShowToast, errorMessage)}
         </>
