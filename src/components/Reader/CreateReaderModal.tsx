@@ -44,25 +44,29 @@ export default function CreateReaderModal(
                             isInvalid={stateRequest.fullName == null || stateRequest.fullName?.length == 0}
                             placeholder="ФИО" onChange={(t) => 
                                 setStateRequest({...stateRequest, fullName: t.target.value})}/>
+                        <Form.Control.Feedback type="invalid"> Добавьте ФИО </Form.Control.Feedback>
                     </FloatingLabel>
                     <FloatingLabel label="Номер телефона">
                         <Form.Control defaultValue={stateRequest.phone? stateRequest.phone : "Не задано"}
                             isInvalid={stateRequest.phone == null || stateRequest.phone?.length == 0}
                             placeholder="Номер телефона" onChange={(t) => 
                                 setStateRequest({...stateRequest, phone: t.target.value})}/>    
+                        <Form.Control.Feedback type="invalid"> Добавьте номер телефона </Form.Control.Feedback>
                     </FloatingLabel>
                     <FloatingLabel label="Адрес регистрации">
                         <Form.Control defaultValue={stateRequest.registrationAddress? stateRequest.registrationAddress : "Не задано"}
                             isInvalid={stateRequest.registrationAddress == null || stateRequest.registrationAddress?.length == 0}
                             placeholder="Адрес регистрации" onChange={(t) => 
                                 setStateRequest({...stateRequest, registrationAddress: t.target.value})}/>    
+                        <Form.Control.Feedback type="invalid"> Добавьте адрес </Form.Control.Feedback>
                     </FloatingLabel>
                     <FloatingLabel label="Возраст">
                         <Form.Control defaultValue={stateRequest.age? stateRequest.age : "Не задано"} 
-                            isInvalid={stateRequest.age != null && stateRequest.age <= 0}
+                            isInvalid={stateRequest.age != null && stateRequest.age <= 14}
                             type="number" placeholder="Возраст" onChange={(t) => 
                                 setStateRequest({...stateRequest, age:
                                     Number(t.target.value) >= 0 ? Number(t.target.value) : null})}/>
+                        <Form.Control.Feedback type="invalid"> Возраст должен быть больше 14 лет </Form.Control.Feedback>
                     </FloatingLabel>
                 </Stack>
             </Modal.Body>

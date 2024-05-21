@@ -1,5 +1,4 @@
 import { appApiIns } from "./AppApi";
-import { GetBookResponse } from "./BookApi";
 
 export interface CreateIssueRequest{
     readerId: string,
@@ -7,14 +6,20 @@ export interface CreateIssueRequest{
     booksId: string[],
 }
 
+export interface UpdateIssueRequest{
+    id : string,
+    addPeriod: number | null,
+    booksId: string[] | null,
+}
+
 export interface GetIssueResponse{
     id: string,
     readerId: string,
     returnDate: string,
-    books: GetBookResponse[],
+    booksId: string[],
 }
 
-export function createReader(request:CreateIssueRequest){
+export function createIssue(request:CreateIssueRequest){
     return appApiIns.post('issue/create',{
         readerId: request.readerId,
         period: request.period,
@@ -34,10 +39,26 @@ export function getIssues(){
     return appApiIns.get('issue/get/all');
 }
 
+export function getIssuesInLibrary(libraryNumber:number){
+    return appApiIns.get('issue/get/library',{
+        params: {
+            libraryNumber: libraryNumber
+        }
+    });
+}
+
 export function deleteIssue(id:string){
     return appApiIns.delete('issue/delete', {
         params: {
             id: id
         }
+    });
+}
+
+export function updateIssue(request:UpdateIssueRequest){
+    return appApiIns.put('issue/update',{
+        id: request.id,
+        addPeriod: request.addPeriod,
+        booksId: request.booksId,
     });
 }

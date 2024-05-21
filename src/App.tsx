@@ -8,6 +8,7 @@ import { useAppSelector } from './redux/hooks';
 import MainPage from './pages/MainPage';
 import ReaderPage from './pages/ReaderPage';
 import LibrarianPage from './pages/LibrarianPage';
+import IssuePage from './pages/IssuePage';
 
 export default function App() {
   const isLogin = useAppSelector(state => state.auth.isLogin);
@@ -18,12 +19,13 @@ export default function App() {
           <Route path='/register' element={!isLogin ? <RegisterPage /> : <Navigate to='/account'/>}/>
           <Route path='/auth' element={!isLogin ? <LoginPage /> : <Navigate to='/account'/>}/>
 
-          <Route path='*' element={isLogin ? <Navigate to='/libraries'/> : <Navigate to='/auth'/>}/>
+          <Route path='*' element={<Navigate to= {isLogin ? '/libraries': '/auth'} />}/>
           <Route path='/libraries' element={isLogin ? <MainPage /> : <Navigate to='/auth'/>}/>
           <Route path='/account' element={isLogin ? <PersonalPage /> : <Navigate to='/auth'/>}/>
           <Route path='/logout' element={isLogin ? <LogoutPage /> : <Navigate to='/auth'/>}/>
           <Route path='/books' element={isLogin ? <BookPage />: <Navigate to='/auth'/>}/>
           <Route path='/readers' element={isLogin ? <ReaderPage />: <Navigate to='/auth'/>}/>
+          <Route path='/issues' element={isLogin ? <IssuePage />: <Navigate to='/auth'/>}/>
           <Route path='/librarians' element={isLogin ? <LibrarianPage /> : <Navigate to='/auth'/>}/>
         </Routes>
       </BrowserRouter>

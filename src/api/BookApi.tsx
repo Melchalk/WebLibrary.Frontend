@@ -61,6 +61,14 @@ export function getBooks(libraryNumber:number){
     });
 }
 
+export function getFreeBooks(libraryNumber:number){
+    return appApiIns.get('book/get/all',{
+        params: {
+            libraryNumber: libraryNumber
+        }
+    });
+}
+
 export function deleteBook(id:string){
     return appApiIns.delete('book/delete', {
         params: {
