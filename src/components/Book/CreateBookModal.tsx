@@ -65,7 +65,7 @@ export default function CreateBookModal(
                             type="number" placeholder="Год" onChange={(t) => 
                                 setStateRequest({...stateRequest, yearPublishing:
                                     Number(t.target.value) >= 0 ? Number(t.target.value) : stateRequest.yearPublishing})}/>
-                        <Form.Control.Feedback type="invalid"> год должен быть больше 0 </Form.Control.Feedback>
+                        <Form.Control.Feedback type="invalid"> Год должен быть больше 0 </Form.Control.Feedback>
                     </FloatingLabel>
                     <FloatingLabel label="Город">
                         <Form.Control defaultValue={stateRequest.cityPublishing? stateRequest.cityPublishing : "Не задано"}

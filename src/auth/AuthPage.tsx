@@ -134,7 +134,7 @@ export function RegisterPage() {
         <Button variant="warning" className="mx-auto"  onClick={() => onRegisterUser()}>Ok</Button>
         
         <Nav.Item className="mx-auto">
-          <Nav.Link href="/auth">Login</Nav.Link>
+          <Nav.Link href="/auth">Вход</Nav.Link>
         </Nav.Item>
       </Stack>
 
