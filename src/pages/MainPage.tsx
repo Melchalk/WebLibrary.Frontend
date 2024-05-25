@@ -40,6 +40,7 @@ export default function MainPage(){
             .then((res) =>{
                 if (stateResponse != res.data){
                     setStateResponse(res.data);
+                    setStateUpdateRequest(res.data);
                 }
             })
             .catch((error) => {

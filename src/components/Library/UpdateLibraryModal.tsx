@@ -35,7 +35,7 @@ export default function UpdateLibraryModal(
     return (
         <Modal show={show} onClose={() => setShowModal(false)}>
             <Modal.Header closeButton onClick={() => setShowModal(false)}>
-                <Modal.Title>Создание библиотеки</Modal.Title>
+                <Modal.Title>Обновление библиотеки</Modal.Title>
             </Modal.Header>
             <Modal.Body> 
                 <Stack gap={3} className="mx-auto">
