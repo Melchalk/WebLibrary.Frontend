@@ -56,7 +56,7 @@ export default function UpdateReaderModal(
     return (
         <Modal show={show} onClose={() => setShowModal(false)}>
             <Modal.Header closeButton onClick={() => setShowModal(false)}>
-                <Modal.Title>Обновление книги</Modal.Title>
+                <Modal.Title>Обновление читателя</Modal.Title>
             </Modal.Header>
             <Modal.Body> 
                 <Stack gap={3} className="mx-auto">
