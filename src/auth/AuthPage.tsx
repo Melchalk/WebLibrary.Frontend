@@ -71,7 +71,7 @@ export function LoginPage() {
 
           <Button variant="warning" className="mx-auto" onClick={() => onLoginUser()}>Ok</Button>
           
-          <Nav.Item className="mx-auto">
+          <Nav.Item id="register_navigation" className="mx-auto">
             <Nav.Link href="/register">Регистрация</Nav.Link>
           </Nav.Item>
         </Stack>
@@ -119,21 +119,21 @@ export function RegisterPage() {
     <>
       <Stack gap={3} className="col-md-2 mx-auto mb-3 mt-5">
         <FloatingLabel label="ФИО">
-          <Form.Control placeholder="ФИО" onChange={(t) => 
+          <Form.Control id="register_name_form" placeholder="ФИО" onChange={(t) => 
             setStateRequest({...stateRequest, fullName: t.target.value})}/>
         </FloatingLabel>
         <FloatingLabel label="Номер телефона">
-          <Form.Control type="phone" placeholder="Номер телефона" onChange={(t) => 
+          <Form.Control id="register_phone_form" type="phone" placeholder="Номер телефона" onChange={(t) => 
             setStateRequest({...stateRequest, phone: t.target.value})}/>
         </FloatingLabel>
         <FloatingLabel label="Пароль">
-          <Form.Control type="password" placeholder="Пароль" onChange={(t) => 
+          <Form.Control id="register_password_form" type="password" placeholder="Пароль" onChange={(t) => 
             setStateRequest({...stateRequest, password: t.target.value})}/>
         </FloatingLabel>
 
-        <Button variant="warning" className="mx-auto"  onClick={() => onRegisterUser()}>Ok</Button>
+        <Button id="login_ok" variant="warning" className="mx-auto"  onClick={() => onRegisterUser()}>Ok</Button>
         
-        <Nav.Item className="mx-auto">
+        <Nav.Item id="login_navigation" className="mx-auto">
           <Nav.Link href="/auth">Вход</Nav.Link>
         </Nav.Item>
       </Stack>

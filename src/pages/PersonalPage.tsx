@@ -59,7 +59,7 @@ export default function PersonalPage(){
     return(
         <>
             <Stack gap={3} className="mx-auto">
-                <h1> Личный кабинет</h1>
+                <h1 id="personal_page"> Личный кабинет</h1>
                 <h4> ФИО: {stateResponse.fullName}</h4>
                 <h4> Номер телефона: {stateResponse.phone}</h4>
                 <h4> Номер библиотеки: {stateResponse.libraryNumber}</h4>
